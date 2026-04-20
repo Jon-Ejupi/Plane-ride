@@ -1,65 +1,31 @@
-Project Overview
-This project is a high-performance, side-scrolling "Flappy Bird" style game built
-using the Phaser 3 JavaScript framework. It features an infinite road system,
-dynamic obstacle spawning, and responsive controls for both desktop and
-mobile devices.
+# Plane Ride ✈️
 
-Key Features
-Infinite World: Uses TileSprites for seamless background and road
-scrolling.
-Dynamic Scaling: Optimized for high-resolution screens with
-Phaser.Scale.FIT .
-Dual Input: Supports Keyboard (Up Arrow/R Key) and Touch/Mouse clicks for
-universal playability.
-Collision Physics: Built on the Arcade Physics engine with custom hitboxes
-for rock obstacles.
-Retry System: A fixed-position UI overlay that allows instant game restarts
-without page reloads.
+A smooth, arcade-style side-scrolling game built with vanilla JavaScript. Navigate your plane through treacherous mountain peaks, collect stars, and aim for a high score.
 
-Installation & Setup
-To run this game locally, ensure you have a local web server (like Live Server for
-VS Code) to handle the asset loading (CORS).
-Clone the repository or download the source files.
-•
+## 🔗 Live Demo
+Play the game here: [https://jon-ejupi.github.io/Plane-ride/](https://jon-ejupi.github.io/Plane-ride/)
 
-•
+## 🎮 How to Play
+* **Start:** Press **UP** on your keyboard or **Tap** the screen.
+* **Control:** Continue tapping or pressing UP to gain altitude. Release to descend.
+* **Objective:** Fly through the gaps in the mountains and collect the gold stars.
+* **Game Over:** Crashing into a mountain or the ground will end the flight. Press **R** or tap to retry.
+* **Next Level** Going to the next level Press *N* or Tap to retry.
 
-•
+## 🛠️ Technical Details
+This project focuses on manual architecture and "under-the-hood" logic rather than heavy external libraries.
+* **Language:** Vanilla JavaScript (ES6+)
+* **Rendering:** HTML5 Canvas
+* **Logic:** * Frame-based physics and gravity simulation.
+    * Custom collision detection.
+    * Dynamic obstacle spawning and star placement.
+    * State management for Level Start, Playing, and Game Over sequences.
 
-•
+## 🚀 Key Features
+* **Visual Feedback:** Dynamic plane state changes upon collision.
+* **Scoring System:** Real-time star tracking.
+* **Responsive Input:** Optimized for both desktop (keyboard) and mobile (touch) browsers.
+* **Clean Architecture:** Lightweight code structure designed for performance.
 
-•
-
-1.
-
-Ensure your directory structure matches:
-/index.html
-/PNG/ (Images and Sprites)
-/WAV/ (Audio files)
-Launch your local server and open index.html .
-
-Controls
-
-Action Input
-Start Game / Flap UP Arrow or Screen Tap / Click
-Restart (Game Over) R Key or Screen Tap / Click
-
-Developer Configuration
-
-The game resolution is currently set to window.innerWidth to provide a full-
-screen experience. You can modify the difficulty by adjusting these variables in
-
-update() :
-
-// Gravity: Higher = Harder
-gravity: { y: 300 }
-// Flap Strength: Higher negative = Higher jumps
-this.plane.setVelocityY(-160);
-// Forward Speed
-this.plane.setVelocityX(150);
-
-
-
-Website: plane-ride.netlify.app
-
-Built with Phaser 3 - Documentation for the Infinite Runner Project
+---
+Developed by **Jon Ejupi**
