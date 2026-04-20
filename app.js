@@ -130,6 +130,7 @@ let messageToPlayer;          // Start screen text
 let retryText;                // Game over text
 let gameWinText;    
 let totalstars = 0;          // Level complete text
+let levelStars = 0;
 
 // ============================================
 // INITIALIZE PHASER GAME
@@ -247,13 +248,16 @@ function create() {
     }
     // 4. COLLECTION LOGIC
     // This tells Phaser: "When the plane overlaps with any object in the stars group..."
-    this.physics.add.overlap(this.plane, stars, (player, star) => {
-        star.disableBody(true, true);
-        totalstars += 1;
-        this.scoreText.setText("Stars: " + totalstars);
-        this.starMusic.play()
-    }, null, this);
-
+        this.physics.add.overlap(this.plane, stars, (player, star) => {
+            star.disableBody(true, true);
+            
+            levelStars += 1; // Add to level buffer, NOT totalstars yet
+            
+            // Display the sum of banked stars + current level stars
+            this.scoreText.setText("Stars: " + (totalstars + levelStars));
+            
+            this.starMusic.play();
+        }, null, this);
   
     // ---- UI TEXT ELEMENTS ----
     // Start message (centered, doesn't scroll with camera)
@@ -387,6 +391,7 @@ function update() {
     // Check if player pressed R or tapped (and game is over)
     if (Phaser.Input.Keyboard.JustDown(this.keyR) || this.input.activePointer.isDown) {
         if (hasLanded || hasBumped) {
+            levelStars = 0; 
             this.scene.restart(); // Restart current level
         }
     }
