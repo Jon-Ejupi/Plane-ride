@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "kenney_tappy-plane",
+			"path": "../../Downloads/kenney_tappy-plane"
+		},
+		{
+			"name": "Flappy Bird",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Flappy Bird"
+	}
+}
