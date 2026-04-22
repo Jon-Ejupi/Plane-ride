@@ -441,7 +441,7 @@ function create() {
             levelStars += 1; // Add to level buffer, NOT totalstars yet
             
             // Display the sum of banked stars + current level stars
-            this.scoreText.setText("Stars: " + (totalstars, levelStars));
+            this.scoreText.setText(`Total Stars:  ${totalstars}   Level Stars: ${levelStars}`);
             
             this.starMusic.play();
         }, null, this);
@@ -603,10 +603,10 @@ function update() {
         if (isGameEnd) {
             // Increment level index and loop back to start if needed
             currentLevelIndex = (currentLevelIndex + 1) % levels.length;
-            totalstars = levelStars;
+            totalstars += levelStars; // Bank current level stars into total
             
             // Restart scene with new level
             this.scene.restart();
         } 
     }
-}
+} 
