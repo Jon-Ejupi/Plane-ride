@@ -13,7 +13,7 @@ Play the game here: [https://jon-ejupi.github.io/Plane-ride/](https://jon-ejupi.
 * **Next Level** Going to the next level Press *N* or Tap to retry.
 
 ## 🛠️ Technical Details
-This project focuses on manual architecture and "under-the-hood" logic rather than heavy external libraries.
+This project focuses on manual architecture and "under-the-hood" logic rather than complex abstractions
 * **Language:** Vanilla JavaScript (ES6+)
 * **Rendering:** HTML5 Canvas
 * **Logic:** * Frame-based physics and gravity simulation.
