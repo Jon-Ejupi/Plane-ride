@@ -114,6 +114,186 @@ const levels = [
             {x: 6300, y: 600}
         ],
     },
+    {
+        speed: 250, // Plane's horizontal movement speed
+        obstacles: [
+            /* X      Y      Inverted  */
+            createObs(500,   600),           // Ground obstacle
+            createObs(1200,  200, false),
+            createObs(1300,  700),
+            createObs(1900,  300,   false),  // Ceiling obstacle (inverted)
+            createObs(2500,  700),
+            createObs(2700, 200, false),
+            createObs(3200, 600),
+            createObs(3600,  200,   false),
+            createObs(4000,  700),
+            createObs(4200,  200, false),
+            createObs(4400, 700),
+            createObs(4600, 200, false),
+            createObs(4800, 200, false),
+            createObs(5000, 700),
+            createObs(5200, 200, false),
+            createObs(5400, 700),
+            createObs(5600, 200, false),
+            createObs(5800, 700),
+            createObs(6000, 200, false),
+            createObs(6200, 700),
+            createObs(6400, 200, false),
+            createObs(6600, 700),
+            createObs(6800, 200, false),
+            createObs(7000, 700),
+            createObs(7200, 200, false),
+            createObs(7400, 700),
+            createObs(7600, 200, false),
+            createObs(7800, 700),
+            createObs(8000, 200, false),
+            createObs(8200, 700),
+            createObs(8500, 200, false),
+            createObs(8700, 700),
+            createObs(9000, 200, false),
+            createObs(9200, 700),
+            createObs(9500, 200, false),
+            createObs(9700, 700),
+            createObs(10000, 200, false)
+        ],
+        stars : [
+            {x: 800, y: 300},
+            {x:1200, y: 450},
+            {x: 1500, y: 400},
+            {x: 1900, y: 500},
+            {x: 2300, y: 450},
+            {x: 2500, y: 500},
+            {x: 2700, y: 550},
+            {x: 3000, y: 400},
+            {x: 3200, y: 300},
+            {x: 3500, y: 600},
+            {x: 3900, y: 500},
+            {x: 4200, y: 600},
+            {x: 4500, y: 400},
+            {x: 4800, y: 500},
+            {x: 5300, y: 600},
+            {x: 5600, y: 400},
+            {x: 5900, y: 500},
+            {x: 6100, y: 500},
+            {x: 6300, y: 600}, 
+            {x: 6600, y: 400},
+            {x: 6900, y: 500},
+            {x: 7200, y: 600},
+            {x: 7500, y: 400},
+            {x: 7800, y: 500},
+            {x: 8100, y: 600},
+            {x: 8400, y: 400},
+            {x: 8700, y: 500},
+            {x: 9000, y: 600},
+            {x: 9300, y: 400},
+            {x: 9600, y: 500},
+            {x: 9900, y: 600}
+        ],
+    },
+    // LEVEL 2 - Faster speed, more challenging obstacles
+    {
+        speed: 300, // Faster plane movement
+          obstacles: [
+            /* X      Y      Inverted  */
+            createObs(500,   600),           // Ground obstacle
+            createObs(1200,  200, false),
+            createObs(1300,  700),
+            createObs(1900,  300,   false),  // Ceiling obstacle (inverted)
+            createObs(2500,  700),
+            createObs(2700, 200, false),
+            createObs(3200, 600),
+            createObs(3600,  200,   false),
+            createObs(4000,  700),
+            createObs(4100,  200, false),
+            createObs(4600,  600),
+            createObs(4900,  200, false),
+            createObs(5000, 700),
+            createObs(5200, 200, false),
+            createObs(5500, 700),
+            createObs(5800, 200, false),
+            createObs(6000, 700),
+            createObs(6200, 200, false),
+            createObs(6400, 700),  
+            createObs(6600, 200, false),
+            createObs(6800, 700),
+            createObs(7000, 200, false),
+            createObs(7200, 700),
+            createObs(7500, 200, false),
+            createObs(7800, 700),
+            createObs(8000, 200, false),
+            createObs(8200, 700),
+            createObs(8500, 200, false),
+            createObs(8700, 700),
+            createObs(9000, 200, false),
+            createObs(9200, 700),
+            createObs(9500, 200, false),
+            createObs(9700, 700),
+            createObs(10000, 200, false),
+            createObs(10200, 700),
+            createObs(10500, 200, false),
+            createObs(10800, 700),      
+            createObs(11000, 200, false),
+            createObs(11300, 700),
+            createObs(11500, 200, false),
+            createObs(11800, 700),
+            createObs(12000, 200, false),
+            createObs(12300, 700),
+            createObs(12500, 200, false),
+            createObs(12800, 700),
+            createObs(13000, 200, false),
+            createObs(13300, 700),
+            createObs(13500, 200, false),
+            createObs(13800, 700),
+            createObs(14000, 200, false)
+        ],
+        stars : [
+            {x: 800, y: 300},
+            {x:1200, y: 450},
+            {x: 1500, y: 400},
+            {x: 1900, y: 500},
+            {x: 2300, y: 450},
+            {x: 2500, y: 500},
+            {x: 2700, y: 550},
+            {x: 3000, y: 400},
+            {x: 3200, y: 300},
+            {x: 3500, y: 600},
+            {x: 3900, y: 500},
+            {x: 4200, y: 600},
+            {x: 4500, y: 400},
+            {x: 4800, y: 500},
+            {x: 5300, y: 600},
+            {x: 5600, y: 400},
+            {x: 5900, y: 500},
+            {x: 6100, y: 500},
+            {x: 6300, y: 600},
+            {x: 6600, y: 400},
+            {x: 6900, y: 500},
+            {x: 7200, y: 600},
+            {x: 7500, y: 400},
+            {x: 7800, y: 500},
+            {x: 8100, y: 600},
+            {x: 8400, y: 400},
+            {x: 8700, y: 500},
+            {x: 9000, y: 600},
+            {x: 9300, y: 400},
+            {x: 9600, y: 500},
+            {x: 9900, y: 600},
+            {x: 10400, y: 400},
+            {x: 10700, y: 500},
+            {x: 11000, y: 600},
+            {x: 11300, y: 400},
+            {x: 11600, y: 500},
+            {x: 11900, y: 600},
+            {x: 12200, y: 400},
+            {x: 12500, y: 500},
+            {x: 12800, y: 600},
+            {x: 13100, y: 400},
+            {x: 13400, y: 500},
+            {x: 13700, y: 600},
+            {x: 14000, y: 400},
+
+        ],
+    },
 ];
 
 // ============================================
@@ -147,7 +327,7 @@ function preload() {
     this.load.image("bufferup", './PNG/rockGrass.png');         // Ground obstacles
     this.load.image("bufferdown", './PNG/rockGrassDown.png');   // Ceiling obstacles
     this.load.image("star", "./PNG/starGold.png");
-
+    this.load.image("smoke", "./PNG/puffLarge.png");
     // Load plane spritesheet (could be used for animations)
     this.load.spritesheet("plane", './PNG/Planes/planeGreen1.png', {
         frameWidth: 64,   // Width of each frame
@@ -159,6 +339,9 @@ function preload() {
     
     // Load star music
     this.load.audio('starMusic', './starcollect.wav');
+
+    // Crash sound
+    this.load.audio('crashMusic', './crashmusic.mp3');
 }
 
 // ============================================
@@ -170,6 +353,10 @@ function create() {
     hasBumped = false;
     isGameStarted = false;
     isGameEnd = false;
+    hasPlayedCrash = false;
+    // Setup the smoke group once at the start
+    this.smokeGroup = this.physics.add.staticGroup();
+    this.hasPlayedCrash = false;
 
     // Store commonly used values
     const width = this.scale.width;
@@ -357,6 +544,7 @@ function update() {
         // If plane hasn't crashed yet
         if (!hasLanded && !hasBumped) {
             
+          
             // Move plane forward at current level's speed
             this.plane.setVelocityX(currentLevel.speed);
 
@@ -384,6 +572,19 @@ function update() {
             this.plane.setVelocityX(0); // Stop horizontal movement
             this.plane.setTint(0xff0000); // Tint plane red to show damage
             retryText.setVisible(true); // Show retry message
+
+              // Crash sound
+            if (!this.crashMusic) {
+               this.crashMusic = this.sound.add('crashMusic', { volume: 0.2, loop: false});
+              
+            }
+            if(!this.hasPlayedCrash) {
+                this.crashMusic.play();
+                const puff = this.smokeGroup.create(this.plane.x, this.plane.y, "smoke");
+                puff.setScale(1).setAlpha(0.8); // Make it look like a little cloud
+                this.hasPlayedCrash = true;
+                
+            }
         }
     }
 
@@ -402,7 +603,8 @@ function update() {
         if (isGameEnd) {
             // Increment level index and loop back to start if needed
             currentLevelIndex = (currentLevelIndex + 1) % levels.length;
-
+            totalstars += levelStars;
+            
             // Restart scene with new level
             this.scene.restart();
         } 
