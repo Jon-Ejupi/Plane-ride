@@ -354,6 +354,8 @@ function create() {
     isGameStarted = false;
     isGameEnd = false;
     hasPlayedCrash = false;
+   
+
     // Setup the smoke group once at the start
     this.smokeGroup = this.physics.add.staticGroup();
     this.hasPlayedCrash = false;
@@ -424,7 +426,7 @@ function create() {
 
     // Create a score variable and text to display it
 
-    this.scoreText = this.add.text(16, 16, "Stars: " + totalstars, {
+    this.scoreText = this.add.text(16, 16, "Stars: " + totalstars , {
         fontSize: '32px',
         fill: '#000' 
     }).setScrollFactor(0).setDepth(100);
@@ -436,16 +438,16 @@ function create() {
     // 4. COLLECTION LOGIC
     // This tells Phaser: "When the plane overlaps with any object in the stars group..."
         this.physics.add.overlap(this.plane, stars, (player, star) => {
-            star.disableBody(true, true);
-            
-            levelStars += 1; // Add to level buffer, NOT totalstars yet
-            
-            // Display the sum of banked stars + current level stars
-            this.scoreText.setText(`Total Stars:  ${totalstars}   Level Stars: ${levelStars}`);
-            
-            this.starMusic.play();
-        }, null, this);
-  
+                    star.disableBody(true, true);
+                    
+                    levelStars += 1; // Increment current level star count
+                   totalstars += 1;
+                    
+                    // Display the sum of banked stars + current level stars
+                this.scoreText.setText(`Stars: ${totalstars}`);
+                    this.starMusic.play();
+                }, null, this);
+        
     // ---- UI TEXT ELEMENTS ----
     // Start message (centered, doesn't scroll with camera)
     messageToPlayer = this.add.text(
@@ -592,7 +594,9 @@ function update() {
     // Check if player pressed R or tapped (and game is over)
     if (Phaser.Input.Keyboard.JustDown(this.keyR) || this.input.activePointer.isDown) {
         if (hasLanded || hasBumped) {
+            totalstars -= levelStars; // Undo the stars from this failed run
             levelStars = 0; 
+           
             this.scene.restart(); // Restart current level
         }
     }
@@ -603,7 +607,8 @@ function update() {
         if (isGameEnd) {
             // Increment level index and loop back to start if needed
             currentLevelIndex = (currentLevelIndex + 1) % levels.length;
-            totalstars += levelStars; // Bank current level stars into total
+            // Reset level star count for new level
+            levelStars = 0; // Bank current level stars into total
             
             // Restart scene with new level
             this.scene.restart();
