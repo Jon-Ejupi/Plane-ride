@@ -206,6 +206,7 @@ class GameScene extends Phaser.Scene {
         this.isGameEnd = false;
         this.hasLanded = false;
         this.hasBumped = false;
+       
     }
 
     preload() {
@@ -231,6 +232,7 @@ class GameScene extends Phaser.Scene {
         this.hasBumped = false;
         this.levelStars = 0;
         this.hasPlayedCrash = false;
+        this.endStateTimestamp = 0; 
 
         this.smoke = this.physics.add.staticGroup();
         const { width, height } = this.scale;
@@ -253,11 +255,10 @@ class GameScene extends Phaser.Scene {
         }
 
         const roads = this.physics.add.staticGroup();
-        for (let x = 0; x < this.levelLength; x += 128) {
-            roads.create(x, height - 32, "ground").setScale(2).refreshBody();
-        }
-
+        const ground = this.add.tileSprite(0, height - 32, this.levelLength, 64, 'ground').setOrigin(0, 0.5);
         const obstacles = this.physics.add.staticGroup();
+        this.physics.add.existing(ground, true);
+        roads.add(ground);
         currentLevel.obstacles.forEach(obs => obstacles.create(obs.x, obs.y, obs.key));
 
         const stars = this.physics.add.staticGroup();
@@ -282,7 +283,7 @@ class GameScene extends Phaser.Scene {
         this.winText = this.add.text(width / 2, height / 2, 'LEVEL COMPLETE!\nPress N or Tap for Next', { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
 
         // Audio
-        this.bgMusic = this.sound.add('bgMusic', { volume: 0.4, loop: true });
+    
         this.starMusic = this.sound.add('starMusic', { volume: 0.4 });
         this.crashMusic = this.sound.add('crashMusic', { volume: 0.2 });
 
@@ -325,6 +326,7 @@ class GameScene extends Phaser.Scene {
                     this.plane.setVelocity(0);
                     this.plane.body.allowGravity = false;
                     this.winText.setVisible(true);
+                    this.endStateTimestamp = this.time.now;
                 }
             } else {
                 // Game Over
@@ -337,8 +339,10 @@ class GameScene extends Phaser.Scene {
                      .setScale(1)
                      .setDepth(50)
                     this.hasPlayedCrash = true;
+                    this.endStateTimestamp = this.time.now; 
                 }
             }
+            
         }
 
         // Scene Switching
@@ -351,10 +355,10 @@ class GameScene extends Phaser.Scene {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
             this.scene.restart();
         }
+    
     }
+
 }
-
-
 // CONFIGURATION
 const config = {
     type: Phaser.AUTO,
