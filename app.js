@@ -14,13 +14,13 @@ const levels = [
         speed: 160,
         obstacles: [
             createObs(800, 650),
-            createObs(1500, 250, 'down'),
+            createObs(1500, 150, 'down'),
             createObs(2200, 650),
-            createObs(3000, 250, 'down'),
+            createObs(3000, 150, 'down'),
             createObs(3800, 650),
-            createObs(4500, 250, 'down'),
+            createObs(4500, 150, 'down'),
             createObs(5200, 650),
-            createObs(6000, 250, 'down'),
+            createObs(6000, 150, 'down'),
 
         ],
         stars: [
@@ -33,27 +33,27 @@ const levels = [
         speed: 200,
         obstacles: [
             createObs(600, 650),
-            createObs(1000, 250, 'down'), 
+            createObs(1000, 150, 'down'), 
             createObs(1300, 650),
-            createObs(1600, 250, 'down'),
+            createObs(1600, 150, 'down'),
             createObs(1900, 650),
-            createObs(2200, 250, 'down'),
+            createObs(2200, 150, 'down'),
             createObs(2500, 650),
-            createObs(2900, 250, 'down'),
+            createObs(2900, 150, 'down'),
             createObs(3200, 650),
-            createObs(3500, 250, 'down'),
+            createObs(3500, 150, 'down'),
             createObs(3700, 650),
-            createObs(4000, 250, 'down'),
+            createObs(4000, 150, 'down'),
             createObs(4300, 650),
-            createObs(4600, 250, 'down'),
+            createObs(4600, 150, 'down'),
             createObs(4900, 650),
-            createObs(5300, 250 , 'down'),
+            createObs(5300, 150 , 'down'),
             createObs(5600, 650),
-            createObs(5900, 250, 'down'),
+            createObs(5900, 150, 'down'),
             createObs(6200, 650),
-            createObs(6500, 250, 'down'),
+            createObs(6500, 150, 'down'),
             createObs(6800, 650),
-            createObs(7100, 250, 'down'),
+            createObs(7100, 150, 'down'),
             createObs(7500, 650),
         
         ],
@@ -69,43 +69,43 @@ const levels = [
         obstacles: [
             createObs(800, 700), createObs(800, 100, 'down'), 
             createObs(1500, 600),
-            createObs(2000, 200, 'down'),
+            createObs(2000, 150, 'down'),
             createObs(2500, 700), createObs(2500, 100, 'down'),
             createObs(3200, 500),
-            createObs(3800, 300, 'down'),
+            createObs(3800, 150, 'down'),
             createObs(4500, 700), createObs(4500, 100, 'down'),
             createObs(5200, 600),
-            createObs(5800, 200, 'down'),
+            createObs(5800, 150, 'down'),
             createObs(6500, 700), createObs(6500, 100, 'down'),
-            createObs(6800, 500),
-            createObs(7500, 300, 'down'),
+            createObs(7000, 700),
+            createObs(7500, 150, 'down'),
             createObs(8200, 700), createObs(8200, 100, 'down'),
             createObs(8700, 600),
-            createObs(9400, 200, 'down'),
+            createObs(9400, 150, 'down'),
             createObs(10100, 700), createObs(10100, 100, 'down'),
             createObs(10800, 500),
-            createObs(11500, 300, 'down'),
+            createObs(11500, 150, 'down'),
             createObs(12200, 700), createObs(12200, 100, 'down'),
             createObs(12900, 600),
-            createObs(13600, 200, 'down'),
+            createObs(13600, 150, 'down'),
             createObs(14300, 700), createObs(14300, 100, 'down'),
             createObs(15000, 500),
-            createObs(15700, 300, 'down'),
+            createObs(15700, 150, 'down'),
             createObs(16400, 700), createObs(16400, 100, 'down'),
-            createObs(17100, 600),
-            createObs(17800, 200, 'down'),
+            createObs(18100, 700),
+            createObs(17800, 150, 'down'),
             createObs(18500, 700), createObs(18500, 100, 'down'),
             createObs(19200, 500),
-            createObs(19900, 300, 'down'),
+            createObs(19900, 150, 'down'),
             createObs(20600, 700), createObs(20600, 100, 'down'),
             createObs(21300, 600),
-            createObs(22000, 200, 'down'),
+            createObs(22000, 150, 'down'),
             createObs(22700, 700), createObs(22700, 100, 'down'),
             createObs(23400, 500),
-            createObs(24100, 300, 'down'),
+            createObs(24100, 150, 'down'),
             createObs(24800, 700), createObs(24800, 100, 'down'),
             createObs(25500, 600),
-            createObs(26200, 200, 'down'),
+            createObs(26200, 150, 'down'),
             createObs(26900, 700), createObs(26900, 100, 'down')
          
          
@@ -194,22 +194,41 @@ class MenuScene extends Phaser.Scene {
     }
 };
 
-// GAME SCENE
-class GameScene extends Phaser.Scene {
+// LOADING SCENE 
+class LoadingScene extends Phaser.Scene {
     constructor() {
-        super('GameScene');
-        // Scene-specific variables
-        this.currentLevelIndex = 0;
-        this.totalstars = 0;
-        this.levelStars = 0;
-        this.isGameStarted = false;
-        this.isGameEnd = false;
-        this.hasLanded = false;
-        this.hasBumped = false;
-       
+        super('LoadingScene');
     }
 
     preload() {
+        const {width, height}= this.scale;
+
+        let progressBar = this.add.graphics();
+        let progressBox = this.add.graphics();
+
+        progressBox.fillStyle(0x222222, 0.8);
+        progressBox.fillRect(width / 2 - 160, height - 2, 320, 50);
+
+        let loadingText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 30,
+            text: "Loading",
+            style: { font: '20px monospace', fill: '#ffffff' },
+        }).setOrigin(0.5);
+
+      this.load.on("progress", (value) => {
+            progressBar.clear();
+            progressBar.fillStyle(0x00ff00, 1);
+            progressBar.fillRect(width / 2 - 150, height / 2 + 10, 300 * value, 30);
+      });
+
+      this.load.on('complete', () => {
+        progressBar.destroy();
+        progressBox.destroy();
+        loadingText.destroy();
+      });
+      
+
         this.load.image("background", './PNG/background.png');
         this.load.image("ground", './PNG/groundGrass.png');
         this.load.image("bufferup", './PNG/rockGrass.png');
@@ -222,7 +241,33 @@ class GameScene extends Phaser.Scene {
         this.load.audio('bgMusic', './backgroundmusicforvideos-game-minecraft-gaming-background-music-402451.mp3');
         this.load.audio('starMusic', './starcollect.wav');
         this.load.audio('crashMusic', './crashmusic.mp3');
+        
+        
     }
+
+    create() {
+  
+        this.scene.start('MenuScene');
+    }
+}
+
+// GAME SCENE
+class GameScene extends Phaser.Scene {
+    constructor() {
+        super('GameScene');
+        // Scene-specific variables
+        this.currentLevelIndex = 0;
+        this.totalstars = 0;
+        this.levelStars = 0;
+        this.isGameStarted = false;
+        this.isGameEnd = false;
+        this.hasLanded = false;
+        this.hasBumped = false;
+        const loading = new LoadingScene; 
+       
+    }
+
+ 
 
     create() {
         // Reset State
@@ -277,13 +322,12 @@ class GameScene extends Phaser.Scene {
 
         // UI
         this.scoreText = this.add.text(16, 16, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
-        this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center' }).setOrigin(0.5).setScrollFactor(0);
+        this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
         
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
         this.winText = this.add.text(width / 2, height / 2, 'LEVEL COMPLETE!\nPress N or Tap for Next', { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
 
         // Audio
-    
         this.starMusic = this.sound.add('starMusic', { volume: 0.4 });
         this.crashMusic = this.sound.add('crashMusic', { volume: 0.2 });
 
@@ -346,12 +390,12 @@ class GameScene extends Phaser.Scene {
         }
 
         // Scene Switching
-        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.isDown && (this.hasLanded || this.hasBumped))) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.JustDown && (this.hasLanded || this.hasBumped))) {
           
             this.totalstars -= this.levelStars; // Penalty for failing
             this.scene.restart();
         }
-        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.isDown && this.isGameEnd)) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.JustDown && this.isGameEnd)) {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
             this.scene.restart();
         }
@@ -366,7 +410,7 @@ const config = {
     height: window.innerHeight,
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     physics: { default: "arcade", arcade: { gravity: { y: 300 }, debug: false } },
-    scene: [MenuScene, GameScene]
+    scene: [ LoadingScene, MenuScene, GameScene]
 };
 
 const Game = new Phaser.Game(config);
