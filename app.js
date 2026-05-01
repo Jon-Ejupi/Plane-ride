@@ -321,7 +321,7 @@ class GameScene extends Phaser.Scene {
     
           
             if (s.y >= 400) {
-                finalStarY = height - 450;
+                finalStarY = height - 600;
             } 
            
             else if (s.y <= 300) {
