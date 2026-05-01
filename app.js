@@ -7,8 +7,7 @@ const createObs = (x, y, type = 'up') => {
         key: type === 'up' ? 'bufferup' : 'bufferdown' 
     };
 };
-
-const levels = [
+ const levels = [
     
     {
         speed: 160,
@@ -21,7 +20,7 @@ const levels = [
             createObs(4500, 150, 'down'),
             createObs(5200, 650),
             createObs(6000, 150, 'down'),
-
+ 
         ],
         stars: [
             {x: 600, y: 400}, {x: 1200, y: 300}, {x: 1800, y: 400}, 
@@ -92,8 +91,8 @@ const levels = [
             createObs(15000, 500),
             createObs(15700, 150, 'down'),
             createObs(16400, 700), createObs(16400, 100, 'down'),
-            createObs(18100, 700),
             createObs(17800, 150, 'down'),
+            createObs(18100, 700),
             createObs(18500, 700), createObs(18500, 100, 'down'),
             createObs(19200, 500),
             createObs(19900, 150, 'down'),
@@ -109,8 +108,8 @@ const levels = [
             createObs(26900, 700), createObs(26900, 100, 'down')
          
          
-
-
+ 
+ 
         ],
         stars: [
             {x: 1100, y: 400}, {x: 1750, y: 350}, {x: 2250, y: 500}, 
@@ -149,14 +148,12 @@ const levels = [
             {x: 3750, y: 500}, {x: 4750, y: 300}, {x: 5750, y: 500}, {x: 6750, y: 300},
             {x: 7750, y: 500}, {x: 8750, y: 300}, {x: 9750, y: 500}, {x: 10750, y: 300},
             {x: 11750, y: 500}, {x: 12750, y: 300}, {x: 13750, y: 500}, {x: 14750, y: 300},
-            {x: 15750, y: 500}, {x: 16750, y: 300}, {x: 17750, y: 500}, {x: 18750, y: 300},
-            {x: 19750, y: 500}, {x: 20750, y: 300}, {x: 21750, y: 500}, {x: 22750, y: 300},
-            {x: 23750, y: 500}, {x: 24750, y: 300}, {x: 25750, y: 500}, {x: 26750, y: 300},
-            {x: 27750, y: 500}, {x: 28750, y: 300},   
-
+            {x: 15750, y: 500}, {x: 16250, y: 300}
         ]
     }
 ];
+ 
+
 
 
 // MENU SCENE
@@ -263,7 +260,7 @@ class GameScene extends Phaser.Scene {
         this.isGameEnd = false;
         this.hasLanded = false;
         this.hasBumped = false;
-        const loading = new LoadingScene; 
+       
        
     }
 
@@ -414,11 +411,11 @@ class GameScene extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.isDown && (this.hasLanded || this.hasBumped))) {
           
             this.totalstars -= this.levelStars; // Penalty for failing
-            this.scene.restart();
+            this.scene.restart({currentLevelIndex: this.currentLevelIndex, totalstars: this.totalstars});
         }
         if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.isDown && this.isGameEnd)) {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
-            this.scene.restart();
+            this.scene.restart({currentLevelIndex: this.currentLevelIndex, totalstars: this.totalstars});
         }
     
     }
