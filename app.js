@@ -391,9 +391,9 @@ class GameScene extends Phaser.Scene {
                     this.plane.setVelocity(0);
                     this.plane.body.allowGravity = false;
                     this.winText.setVisible(true);
-                    this.endStateTimestamp = this.time.now;
+                    
                 }
-            } else {
+            } else if (this.hasLanded  || this.hasBumped) {
                 // Game Over
                 this.plane.setVelocityX(0);
                 this.plane.setTint(0xff0000);
@@ -404,19 +404,19 @@ class GameScene extends Phaser.Scene {
                      .setScale(1)
                      .setDepth(50)
                     this.hasPlayedCrash = true;
-                    this.endStateTimestamp = this.time.now; 
+                   
                 }
             }
             
         }
 
         // Scene Switching
-        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.JustDown && (this.hasLanded || this.hasBumped))) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.isDown && (this.hasLanded || this.hasBumped))) {
           
             this.totalstars -= this.levelStars; // Penalty for failing
             this.scene.restart();
         }
-        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.JustDown && this.isGameEnd)) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.isDown && this.isGameEnd)) {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
             this.scene.restart();
         }
