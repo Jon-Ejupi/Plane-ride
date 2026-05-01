@@ -320,14 +320,14 @@ class GameScene extends Phaser.Scene {
             let finalStarY = s.y;
     
           
-            if (s.y > 400) {
-                finalStarY = height - 150;
+            if (s.y >= 400) {
+                finalStarY = height - 450;
             } 
            
-            else if (s.y < 150) {
-                finalStarY = 150; 
+            else if (s.y <= 300) {
+                finalStarY = 550; 
             }
-            stars.create(s.x, s.y, "star")
+            stars.create(s.x, finalStarY, "star")
     });
 
         // Player
