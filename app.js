@@ -304,10 +304,31 @@ class GameScene extends Phaser.Scene {
         const obstacles = this.physics.add.staticGroup();
         this.physics.add.existing(ground, true);
         roads.add(ground);
-        currentLevel.obstacles.forEach(obs => obstacles.create(obs.x, obs.y, obs.key));
+        currentLevel.obstacles.forEach(obs => {
+            let finalY = obs.y;
+            if (obs.y > 500) {
+                finalY = height - 150;
+            }
+            else if (obs.y < 200) {
+                finalY = 90
+            }
+            obstacles.create(obs.x, finalY, obs.key);
+        });
 
         const stars = this.physics.add.staticGroup();
-        currentLevel.stars.forEach(s => stars.create(s.x, s.y, "star"));
+        currentLevel.stars.forEach(s => {
+            let finalStarY = s.y;
+    
+          
+            if (s.y > 400) {
+                finalStarY = height - 150;
+            } 
+           
+            else if (s.y < 150) {
+                finalStarY = 150; 
+            }
+            stars.create(s.x, s.y, "star")
+    });
 
         // Player
         this.plane = this.physics.add.sprite(100, 300, 'plane');
@@ -406,11 +427,17 @@ class GameScene extends Phaser.Scene {
 // CONFIGURATION
 const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-    physics: { default: "arcade", arcade: { gravity: { y: 300 }, debug: false } },
-    scene: [ LoadingScene, MenuScene, GameScene]
+    scale: {
+        mode: Phaser.Scale.FIT, // This is the magic part
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: window.innerWidth,  // Always use these units for your logic
+        height: window.innerHeight
+    },
+    physics: { 
+        default: "arcade", 
+        arcade: { gravity: { y: 600 }, debug: false } // Increased gravity for better feel
+    },
+    scene: [LoadingScene, MenuScene, GameScene]
 };
 
 const Game = new Phaser.Game(config);
