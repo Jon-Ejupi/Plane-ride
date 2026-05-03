@@ -809,7 +809,7 @@ class GameScene extends Phaser.Scene {
             
             if (isMobile) {
                 
-                obstacle.setScale(2.5, 2.5); 
+                obstacle.setScale(2, 2); 
             } else {
 
                 obstacle.setScale(1.2, 1.2);
@@ -820,7 +820,7 @@ class GameScene extends Phaser.Scene {
             obstacle.y = 0;             
             
             if (isMobile) {
-                obstacle.setScale(2.5, 2.5);
+                obstacle.setScale(2, 2);
             } else {
                 obstacle.setScale(1.2, 1.2);
             }
