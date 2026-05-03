@@ -24,7 +24,7 @@ const createObs = (x, y, type = 'up') => {
         ],
         stars: [
             {x: 600, y: 400}, {x: 1200, y: 300}, {x: 1800, y: 400}, 
-            {x: 2500, y: 300}, {x: 3500, y: 400}, {x: 4200, y: 300}
+            {x: 2500, y: 300}, {x: 3500, y: 400}, {x: 4200, y: 300}, {x: 5000, y: 400}, {x: 5800, y: 300}, {x: 6800, y: 400}
         ]
     },
     
@@ -54,12 +54,13 @@ const createObs = (x, y, type = 'up') => {
             createObs(6800, 650),
             createObs(7100, 150, 'down'),
             createObs(7500, 650),
+            createObs(8000, 150, 'down'),
         
         ],
         stars: [
             {x: 750, y: 450}, {x: 1100, y: 450}, {x: 1600, y: 450}, 
             {x: 2100, y: 450}, {x: 2800, y: 450}, {x: 3300, y: 450}, {x: 4000, y: 450}, {x: 4700, y: 450},
-            {x: 5400, y: 450}, {x: 6100, y: 450}, { x: 6800, y: 450 }
+            {x: 5400, y: 450}, {x: 6100, y: 450}, { x: 6800, y: 450 }, 
         ]
     },
    
@@ -118,7 +119,9 @@ const createObs = (x, y, type = 'up') => {
             {x: 8900, y: 400}, {x: 9600, y: 350}, {x: 10300, y: 500}, {x: 11000, y: 300},
             {x: 11700, y: 400}, {x: 12400, y: 350}, {x: 13100, y: 500}, {x: 13800, y: 300},
             {x: 14500, y: 400}, {x: 15200, y: 350}, {x: 15900, y: 500}, {x: 16600, y: 300},
-            {x: 17300, y: 400}, {x: 18000, y: 350}, {x: 18700, y: 500}
+            {x: 17300, y: 400}, {x: 18000, y: 350}, {x: 18700, y: 500},  {x: 19400, y: 300}, {x: 20100, y: 400}, {x: 20800, y: 350}, {x: 21500, y: 500}, {x: 22200, y: 300},
+            {x: 22900, y: 400}, {x: 23600, y: 350}, {x: 24300, y: 500}, {x: 25000, y: 300},
+            {x: 25700, y: 400}, {x: 26400, y: 350}, {x: 27100, y: 500}
         ]
     },
     
@@ -279,7 +282,7 @@ class GameScene extends Phaser.Scene {
         this.smoke = this.physics.add.staticGroup();
         const { width, height } = this.scale;
         const currentLevel = levels[this.currentLevelIndex];
-        this.levelLength = 5000 + (this.currentLevelIndex * 2000);
+        this.levelLength = Math.max(...currentLevel.obstacles.map(o => o.x)) + 500;
 
         // Persistent Stars
         this.totalstars = parseInt(localStorage.getItem('totalstars')) || 0;
@@ -298,16 +301,20 @@ class GameScene extends Phaser.Scene {
 
         const roads = this.physics.add.staticGroup();
         const ground = this.add.tileSprite(0, height - 32, this.levelLength, 64, 'ground').setOrigin(0, 0.5);
-        const obstacles = this.physics.add.staticGroup();
+        const obstacles = this.physics.add.group({
+            setScale: { x: 2.5, y: 2.5 },
+            allowGravity: false,
+            immovable: true,
+            setOrigin: { x: 0.5, y: 1 }
+        });
         this.physics.add.existing(ground, true);
         roads.add(ground);
         currentLevel.obstacles.forEach(obs => {
             let finalY = obs.y;
             if (obs.y > 500) {
                 finalY = height - 150;
-            }
-            else if (obs.y < 200) {
-                finalY = 90
+            } else if (obs.y < 200) {
+                finalY = 90;
             }
             obstacles.create(obs.x, finalY, obs.key);
         });
@@ -407,13 +414,15 @@ class GameScene extends Phaser.Scene {
             
         }
 
+           const tapIs = this.input.activePointer.isDown;
+
         // Scene Switching
-        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (this.input.activePointer.isDown && (this.hasLanded || this.hasBumped))) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyR) || (tapIs && (this.hasLanded || this.hasBumped))) {
           
-            this.totalstars -= this.levelStars; // Penalty for failing
-            this.scene.restart({currentLevelIndex: this.currentLevelIndex, totalstars: this.totalstars});
+            this.totalstars -= this.levelStars; 
+            this.scene.restart({currentLevelIndex: this.currentLevelIndex,totalstars: this.totalstars});
         }
-        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (this.input.activePointer.isDown && this.isGameEnd)) {
+        if (Phaser.Input.Keyboard.JustDown(this.keyN) || (tapIs && this.isGameEnd)) {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
             this.scene.restart({currentLevelIndex: this.currentLevelIndex, totalstars: this.totalstars});
         }
@@ -425,14 +434,14 @@ class GameScene extends Phaser.Scene {
 const config = {
     type: Phaser.AUTO,
     scale: {
-        mode: Phaser.Scale.FIT, // This is the magic part
+        mode: Phaser.Scale.FIT, 
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.innerWidth,  // Always use these units for your logic
-        height: window.innerHeight
+        width: window.innerWidth * devicePixelRatio,  
+        height: window.innerHeight * devicePixelRatio
     },
     physics: { 
         default: "arcade", 
-        arcade: { gravity: { y: 600 }, debug: false } // Increased gravity for better feel
+        arcade: { gravity: { y: 600 }, debug: false } 
     },
     scene: [LoadingScene, MenuScene, GameScene]
 };
