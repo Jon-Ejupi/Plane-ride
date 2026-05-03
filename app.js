@@ -812,7 +812,7 @@ class GameScene extends Phaser.Scene {
                 obstacle.setScale(2.5, 2.5); 
             } else {
 
-                obstacle.setScale(2.5, 2.5);
+                obstacle.setScale(1.2, 1.2);
             }
         } else {
             // TOP SPIKES
@@ -822,7 +822,7 @@ class GameScene extends Phaser.Scene {
             if (isMobile) {
                 obstacle.setScale(2.5, 2.5);
             } else {
-                obstacle.setScale(2.5, 2.5);
+                obstacle.setScale(1.2, 1.2);
             }
         }
 
