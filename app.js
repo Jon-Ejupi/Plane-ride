@@ -294,10 +294,10 @@ const createObs = (x, y, type = 'up') => {
  
 {
     // Level 9 — speed 490, dense double columns + triple bursts
-    speed: 490,
+    speed: 450,
     obstacles: [
-        createObs(500, 700), createObs(500, 100, 'down'),
-        createObs(900, 700), createObs(900, 100, 'down'),
+        createObs(600, 700), createObs(1000, 100, 'down'),
+        createObs(1000, 700), createObs(1000, 100, 'down'),
         createObs(1400, 650),
         createObs(1800, 150, 'down'),
         createObs(2100, 650),
@@ -341,8 +341,8 @@ const createObs = (x, y, type = 'up') => {
     // Level 10 — speed 520, gauntlet: pairs every 450px for a long stretch
     speed: 520,
     obstacles: [
-        createObs(500, 700), createObs(500, 100, 'down'),
-        createObs(950, 700), createObs(950, 100, 'down'),
+        createObs(500, 700), createObs(900, 100, 'down'),
+        createObs(950, 700), createObs(1100, 100, 'down'),
         createObs(1400, 700), createObs(1400, 100, 'down'),
         createObs(1850, 700), createObs(1850, 100, 'down'),
         createObs(2300, 700), createObs(2300, 100, 'down'),
@@ -379,7 +379,7 @@ const createObs = (x, y, type = 'up') => {
     // Level 11 — speed 550, wave pattern: alternating high/low pairs with singles
     speed: 550,
     obstacles: [
-        createObs(600, 700), createObs(600, 100, 'down'),
+        createObs(600, 700), createObs(800, 100, 'down'),
         createObs(1000, 550),
         createObs(1300, 180, 'down'),
         createObs(1700, 700), createObs(1700, 100, 'down'),
@@ -425,8 +425,8 @@ const createObs = (x, y, type = 'up') => {
     // Level 12 — speed 580, triple-column bursts with breathing room
     speed: 580,
     obstacles: [
-        createObs(400, 700), createObs(400, 100, 'down'),
-        createObs(750, 700), createObs(750, 100, 'down'),
+        createObs(400, 700), createObs(600, 100, 'down'),
+        createObs(750, 700), createObs(950, 100, 'down'),
         createObs(1100, 700), createObs(1100, 100, 'down'),
         createObs(1700, 650),
         createObs(2100, 150, 'down'),
@@ -470,8 +470,8 @@ const createObs = (x, y, type = 'up') => {
     // Level 13 — speed 610, gauntlet of pairs every 400px — longest level yet
     speed: 610,
     obstacles: [
-        createObs(400, 700), createObs(400, 100, 'down'),
-        createObs(800, 700), createObs(800, 100, 'down'),
+        createObs(400, 700), createObs(800, 100, 'down'),
+        createObs(800, 700), createObs(1100, 100, 'down'),
         createObs(1200, 700), createObs(1200, 100, 'down'),
         createObs(1600, 700), createObs(1600, 100, 'down'),
         createObs(2000, 700), createObs(2000, 100, 'down'),
@@ -519,8 +519,8 @@ const createObs = (x, y, type = 'up') => {
    
     speed: 650,
     obstacles: [
-        createObs(350, 700), createObs(350, 100, 'down'),
-        createObs(700, 700), createObs(700, 100, 'down'),
+        createObs(350, 700), createObs(550, 100, 'down'),
+        createObs(700, 700), createObs(1000, 100, 'down'),
         createObs(1050, 700), createObs(1050, 100, 'down'),
         createObs(1400, 700), createObs(1400, 100, 'down'),
         createObs(1750, 700), createObs(1750, 100, 'down'),
@@ -575,9 +575,9 @@ const createObs = (x, y, type = 'up') => {
    
     speed: 700,
     obstacles: [
-        createObs(300, 700), createObs(300, 100, 'down'),
-        createObs(600, 700), createObs(600, 100, 'down'),
-        createObs(900, 700), createObs(900, 100, 'down'),
+        createObs(300, 700), createObs(700, 100, 'down'),
+        createObs(600, 700), createObs(1000, 100, 'down'),
+        createObs(900, 700), createObs(1300, 100, 'down'),
         createObs(1300, 650),
         createObs(1600, 150, 'down'),
         createObs(1900, 650),
@@ -946,8 +946,8 @@ const config = {
     scale: {
         mode: Phaser.Scale.FIT, 
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.innerWidth, 
-        height: window.innerHeight
+        width: 1000, 
+        height: 1000
     },
     physics: { 
         default: "arcade", 
