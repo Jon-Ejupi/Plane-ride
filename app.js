@@ -773,14 +773,12 @@ class GameScene extends Phaser.Scene {
         this.smoke = this.physics.add.staticGroup();
         this.levelLength = Math.max(...currentLevel.obstacles.map(o => o.x)) + 500;
 
-        // Persistent Stars
+   
         this.totalstars = parseInt(localStorage.getItem('totalstars')) || 0;
 
-        // Visuals
         this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
         
-        // GLOBAL AUDIO LOGIC
-        // Check if the music is already playing in the global sound manager
+       
         if (!this.sound.get('bgMusic')) {
             this.bgMusic = this.sound.add('bgMusic', { volume: 0.4, loop: true });
             this.bgMusic.play();
@@ -815,7 +813,7 @@ class GameScene extends Phaser.Scene {
                 obstacle.setScale(1.2, 1.2);
             }
         } else {
-            // TOP SPIKES
+
             obstacle.setOrigin(0.5, 0); 
             obstacle.y = 0;             
             
@@ -914,9 +912,17 @@ class GameScene extends Phaser.Scene {
                 this.retryText.setVisible(true);
                 if (!this.hasPlayedCrash) {
                     this.crashMusic.play();
-                     this.smoke.create(this.plane.x, this.plane.y, 'smoke')
-                     .setScale(1)
-                     .setDepth(50)
+                    const emiter = this.add.particles(this.plane.x, this.plane.y, "smoke", {
+                            speed: {min: 50, max: 150},
+                            scale: {start: 0.7, end: 0},
+                            alpha: {start: 1, end: 0}, 
+                            angle: { min: 0, max: 360},
+                            lifespan: 800,
+                            blendMode: 'ADD',
+                            emitting: false,
+                    });
+                    emiter.setDepth(59);
+                    emiter.explode(15)
                     this.hasPlayedCrash = true;
                    
                 }
