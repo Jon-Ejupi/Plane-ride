@@ -10,6 +10,7 @@ const createObs = (x, y, type = 'up') => {
  const levels = [
     
     {
+        // level 1
         speed: 160,
         obstacles: [
             createObs(800, 650),
@@ -29,6 +30,7 @@ const createObs = (x, y, type = 'up') => {
     },
     
     {
+        // level 2
         speed: 200,
         obstacles: [
             createObs(600, 650),
@@ -60,11 +62,12 @@ const createObs = (x, y, type = 'up') => {
         stars: [
             {x: 750, y: 450}, {x: 1100, y: 450}, {x: 1600, y: 450}, 
             {x: 2100, y: 450}, {x: 2800, y: 450}, {x: 3300, y: 450}, {x: 4000, y: 450}, {x: 4700, y: 450},
-            {x: 5400, y: 450}, {x: 6100, y: 450}, { x: 6800, y: 450 }, 
+            {x: 5400, y: 450}, {x: 6100, y: 450}, { x: 6800, y: 450 }, {x: 7900, y: 450}, {x: 8300, y: 450}
         ]
     },
    
     {
+        // level 3
         speed: 250,
         obstacles: [
             createObs(800, 700), createObs(800, 100, 'down'), 
@@ -126,6 +129,7 @@ const createObs = (x, y, type = 'up') => {
     },
     
     {
+        // level 4
         speed: 320,
         obstacles: [
             createObs(500, 650), createObs(1000, 650), createObs(1500, 650),
@@ -156,107 +160,108 @@ const createObs = (x, y, type = 'up') => {
     }, 
        
      {
-    speed: 370,
-    obstacles: [
-        createObs(600, 650), createObs(600, 150, 'down'),
-        createObs(1100, 600), createObs(1100, 200, 'down'),
-        createObs(1600, 650), createObs(1600, 150, 'down'),
-        createObs(2100, 600), createObs(2100, 200, 'down'),
-        createObs(2600, 650), createObs(2600, 150, 'down'),
-        createObs(3100, 600), createObs(3100, 200, 'down'),
-        createObs(3600, 650), createObs(3600, 150, 'down'),
-        createObs(4100, 600), createObs(4100, 200, 'down'),
-        createObs(4600, 650), createObs(4600, 150, 'down'),
-        createObs(5100, 600), createObs(5100, 200, 'down'),
-        createObs(5600, 650), createObs(5600, 150, 'down'),
-        createObs(6100, 600), createObs(6100, 200, 'down'),
-        createObs(6600, 650), createObs(6600, 150, 'down'),
-        createObs(7100, 600), createObs(7100, 200, 'down'),
-        createObs(7600, 650), createObs(7600, 150, 'down'),
-        createObs(8100, 600), createObs(8100, 200, 'down'),
-        createObs(8600, 650), createObs(8600, 150, 'down'),
-        createObs(9100, 600), createObs(9100, 200, 'down'),
-        createObs(9600, 650), createObs(9600, 150, 'down'),
-        createObs(10100, 600), createObs(10100, 200, 'down'),
-    ],
-    stars: [
-        {x: 850, y: 400}, {x: 1350, y: 380}, {x: 1850, y: 400},
-        {x: 2350, y: 380}, {x: 2850, y: 400}, {x: 3350, y: 380},
-        {x: 3850, y: 400}, {x: 4350, y: 380}, {x: 4850, y: 400},
-        {x: 5350, y: 380}, {x: 5850, y: 400}, {x: 6350, y: 380},
-        {x: 6850, y: 400}, {x: 7350, y: 380}, {x: 7850, y: 400},
-        {x: 8350, y: 380}, {x: 8850, y: 400}, {x: 9350, y: 380},
-        {x: 9850, y: 400},
-    ]
+        // level 5
+        speed: 370,
+        obstacles: [
+            createObs(600, 650), createObs(600, 150, 'down'),
+            createObs(1100, 600), createObs(1100, 200, 'down'),
+            createObs(1600, 650), createObs(1600, 150, 'down'),
+            createObs(2100, 600), createObs(2100, 200, 'down'),
+            createObs(2600, 650), createObs(2600, 150, 'down'),
+            createObs(3100, 600), createObs(3100, 200, 'down'),
+            createObs(3600, 650), createObs(3600, 150, 'down'),
+            createObs(4100, 600), createObs(4100, 200, 'down'),
+            createObs(4600, 650), createObs(4600, 150, 'down'),
+            createObs(5100, 600), createObs(5100, 200, 'down'),
+            createObs(5600, 650), createObs(5600, 150, 'down'),
+            createObs(6100, 600), createObs(6100, 200, 'down'),
+            createObs(6600, 650), createObs(6600, 150, 'down'),
+            createObs(7100, 600), createObs(7100, 200, 'down'),
+            createObs(7600, 650), createObs(7600, 150, 'down'),
+            createObs(8100, 600), createObs(8100, 200, 'down'),
+            createObs(8600, 650), createObs(8600, 150, 'down'),
+            createObs(9100, 600), createObs(9100, 200, 'down'),
+            createObs(9600, 650), createObs(9600, 150, 'down'),
+            createObs(10100, 600), createObs(10100, 200, 'down'),
+        ],
+        stars: [
+            {x: 850, y: 400}, {x: 1350, y: 280}, {x: 1850, y: 500},
+            {x: 2350, y: 780}, {x: 2850, y: 400}, {x: 3350, y: 380},
+            {x: 3850, y: 250}, {x: 4350, y: 380}, {x: 4850, y: 600},
+            {x: 5350, y: 290}, {x: 5850, y: 460}, {x: 6350, y: 680},
+            {x: 6850, y: 400}, {x: 7350, y: 380}, {x: 7850, y: 650},
+            {x: 8350, y: 380}, {x: 8850, y: 400}, {x: 9350, y: 280},
+            {x: 9850, y: 400},
+        ]
+    },
+    
+    {
+        // level 6
+        speed: 400,
+        obstacles: [
+            createObs(500, 650), createObs(800, 150, 'down'), createObs(1100, 650),
+            createObs(1700, 150, 'down'), createObs(2000, 650), createObs(2300, 150, 'down'),
+            createObs(3000, 650), createObs(3000, 150, 'down'),
+            createObs(3700, 650), createObs(3700, 150, 'down'),
+            createObs(4400, 650), createObs(4400, 150, 'down'),
+            createObs(4900, 150, 'down'), createObs(5200, 650), createObs(5500, 150, 'down'),
+            createObs(6200, 650), createObs(6200, 150, 'down'),
+            createObs(7000, 650), createObs(7000, 150, 'down'),
+            createObs(7700, 650), createObs(7700, 150, 'down'),
+            createObs(8400, 150, 'down'), createObs(8700, 650), createObs(9000, 150, 'down'),
+            createObs(9700, 650), createObs(9700, 150, 'down'),
+            createObs(10400, 650), createObs(10400, 150, 'down'),
+            createObs(11100, 650), createObs(11100, 150, 'down'),
+        ],
+        stars: [
+            {x: 650, y: 300}, {x: 1400, y: 400}, {x: 2600, y: 550},
+            {x: 3350, y: 200}, {x: 4150, y: 350}, {x: 5050, y: 700},
+            {x: 5900, y: 650}, {x: 6600, y: 250}, {x: 7350, y: 850},
+            {x: 8100, y: 600}, {x: 8850, y: 750}, {x: 9500, y: 700},
+            {x: 10150, y: 700}, {x: 10850, y: 600},
+        ]
+    },
+    
+    {
+        // level 7
+        speed: 430,
+        obstacles: [
+            createObs(700, 700), createObs(700, 100, 'down'),
+            createObs(1300, 500),
+            createObs(1800, 180, 'down'),
+            createObs(2300, 700), createObs(2300, 100, 'down'),
+            createObs(2900, 480),
+            createObs(3400, 160, 'down'),
+            createObs(3900, 700), createObs(3900, 100, 'down'),
+            createObs(4500, 520),
+            createObs(5000, 130, 'down'),
+            createObs(5500, 700), createObs(5500, 100, 'down'),
+            createObs(6100, 490),
+            createObs(6700, 150, 'down'),
+            createObs(7200, 700), createObs(7200, 100, 'down'),
+            createObs(7800, 500),
+            createObs(8400, 140, 'down'),
+            createObs(8900, 700), createObs(8900, 100, 'down'),
+            createObs(9500, 510),
+            createObs(10100, 170, 'down'),
+            createObs(10600, 700), createObs(10600, 100, 'down'),
+            createObs(11200, 480),
+            createObs(11800, 150, 'down'),
+            createObs(12300, 700), createObs(12300, 100, 'down'),
+        ],
+        stars: [
+            {x: 1000, y: 400}, {x: 1550, y: 650}, {x: 2050, y: 800},
+            {x: 2600, y: 750}, {x: 3150, y: 600}, {x: 3650, y: 450},
+            {x: 4200, y: 600}, {x: 4750, y: 350}, {x: 5250, y: 400},
+            {x: 5800, y: 350}, {x: 6400, y: 200}, {x: 6950, y: 150},
+            {x: 7500, y: 500}, {x: 8150, y: 750}, {x: 8650, y: 650},
+            {x: 9200, y: 150}, {x: 9800, y: 300}, {x: 10350, y: 750},
+            {x: 10850, y: 200}, {x: 11500, y: 450}, {x: 12050, y: 800},
+        ]
 },
  
 {
-   
-    speed: 400,
-    obstacles: [
-        createObs(500, 650), createObs(800, 150, 'down'), createObs(1100, 650),
-        createObs(1700, 150, 'down'), createObs(2000, 650), createObs(2300, 150, 'down'),
-        createObs(3000, 650), createObs(3000, 150, 'down'),
-        createObs(3700, 650), createObs(3700, 150, 'down'),
-        createObs(4400, 650), createObs(4400, 150, 'down'),
-        createObs(4900, 150, 'down'), createObs(5200, 650), createObs(5500, 150, 'down'),
-        createObs(6200, 650), createObs(6200, 150, 'down'),
-        createObs(7000, 650), createObs(7000, 150, 'down'),
-        createObs(7700, 650), createObs(7700, 150, 'down'),
-        createObs(8400, 150, 'down'), createObs(8700, 650), createObs(9000, 150, 'down'),
-        createObs(9700, 650), createObs(9700, 150, 'down'),
-        createObs(10400, 650), createObs(10400, 150, 'down'),
-        createObs(11100, 650), createObs(11100, 150, 'down'),
-    ],
-    stars: [
-        {x: 650, y: 400}, {x: 1400, y: 400}, {x: 2600, y: 350},
-        {x: 3350, y: 400}, {x: 4150, y: 350}, {x: 5050, y: 400},
-        {x: 5900, y: 350}, {x: 6600, y: 400}, {x: 7350, y: 350},
-        {x: 8100, y: 400}, {x: 8850, y: 350}, {x: 9500, y: 400},
-        {x: 10150, y: 350}, {x: 10850, y: 400},
-    ]
-},
- 
-{
-   
-    speed: 430,
-    obstacles: [
-        createObs(700, 700), createObs(700, 100, 'down'),
-        createObs(1300, 500),
-        createObs(1800, 180, 'down'),
-        createObs(2300, 700), createObs(2300, 100, 'down'),
-        createObs(2900, 480),
-        createObs(3400, 160, 'down'),
-        createObs(3900, 700), createObs(3900, 100, 'down'),
-        createObs(4500, 520),
-        createObs(5000, 130, 'down'),
-        createObs(5500, 700), createObs(5500, 100, 'down'),
-        createObs(6100, 490),
-        createObs(6700, 150, 'down'),
-        createObs(7200, 700), createObs(7200, 100, 'down'),
-        createObs(7800, 500),
-        createObs(8400, 140, 'down'),
-        createObs(8900, 700), createObs(8900, 100, 'down'),
-        createObs(9500, 510),
-        createObs(10100, 170, 'down'),
-        createObs(10600, 700), createObs(10600, 100, 'down'),
-        createObs(11200, 480),
-        createObs(11800, 150, 'down'),
-        createObs(12300, 700), createObs(12300, 100, 'down'),
-    ],
-    stars: [
-        {x: 1000, y: 400}, {x: 1550, y: 350}, {x: 2050, y: 400},
-        {x: 2600, y: 350}, {x: 3150, y: 400}, {x: 3650, y: 350},
-        {x: 4200, y: 400}, {x: 4750, y: 350}, {x: 5250, y: 400},
-        {x: 5800, y: 350}, {x: 6400, y: 400}, {x: 6950, y: 350},
-        {x: 7500, y: 400}, {x: 8150, y: 350}, {x: 8650, y: 400},
-        {x: 9200, y: 350}, {x: 9800, y: 400}, {x: 10350, y: 350},
-        {x: 10850, y: 400}, {x: 11500, y: 350}, {x: 12050, y: 400},
-    ]
-},
- 
-{
-   
+   // level 8
     speed: 460,
     obstacles: [
         createObs(400, 650), createObs(750, 150, 'down'),
@@ -278,22 +283,22 @@ const createObs = (x, y, type = 'up') => {
         createObs(9300, 650), createObs(9600, 150, 'down'),
     ],
     stars: [
-        {x: 600, y: 400}, {x: 900, y: 380}, {x: 1200, y: 400},
-        {x: 1500, y: 380}, {x: 1750, y: 400}, {x: 2050, y: 380},
-        {x: 2300, y: 400}, {x: 2600, y: 380}, {x: 2850, y: 400},
-        {x: 3150, y: 380}, {x: 3400, y: 400}, {x: 3700, y: 380},
-        {x: 3950, y: 400}, {x: 4250, y: 380}, {x: 4500, y: 400},
-        {x: 4800, y: 380}, {x: 5050, y: 400}, {x: 5350, y: 380},
-        {x: 5600, y: 400}, {x: 5900, y: 380}, {x: 6150, y: 400},
-        {x: 6450, y: 380}, {x: 6700, y: 400}, {x: 7000, y: 380},
-        {x: 7250, y: 400}, {x: 7550, y: 380}, {x: 7800, y: 400},
-        {x: 8100, y: 380}, {x: 8350, y: 400}, {x: 8650, y: 380},
-        {x: 8900, y: 400}, {x: 9200, y: 380},
+         {x: 525, y: 400}, {x: 875, y: 280}, {x: 1225, y: 500},
+        {x: 1575, y: 200}, {x: 1925, y: 600}, {x: 2275, y: 680},
+        {x: 2625, y: 700}, {x: 2975, y: 180}, {x: 3325, y: 700},
+        {x: 3675, y: 280}, {x: 4025, y: 600}, {x: 4375, y: 380},
+        {x: 4725, y: 700}, {x: 5075, y: 580}, {x: 5425, y: 400},
+        {x: 5775, y: 380}, {x: 6125, y: 400}, {x: 6475, y: 380},
+        {x: 6825, y: 660}, {x: 7175, y: 250}, {x: 7525, y: 750},
+        {x: 7875, y: 680}, {x: 8225, y: 400}, {x: 8575, y: 300},
+        {x: 8925, y: 400}, {x: 9275, y: 380}, {x: 9625, y: 400},
+        {x: 9875, y: 180}
+    
     ]
 },
  
 {
-    // Level 9 — speed 490, dense double columns + triple bursts
+    // level 9
     speed: 450,
     obstacles: [
         createObs(600, 700), createObs(1000, 100, 'down'),
@@ -326,19 +331,22 @@ const createObs = (x, y, type = 'up') => {
         createObs(10400, 700), createObs(10400, 100, 'down'),
     ],
     stars: [
-        {x: 700, y: 400}, {x: 1150, y: 380}, {x: 1600, y: 400},
-        {x: 1950, y: 380}, {x: 2250, y: 400}, {x: 2900, y: 380},
-        {x: 3300, y: 400}, {x: 3725, y: 380}, {x: 4150, y: 400},
-        {x: 4500, y: 380}, {x: 4800, y: 400}, {x: 5450, y: 380},
-        {x: 5850, y: 400}, {x: 6300, y: 380}, {x: 6650, y: 400},
-        {x: 6950, y: 380}, {x: 7600, y: 400}, {x: 8000, y: 380},
-        {x: 8450, y: 400}, {x: 8900, y: 380}, {x: 9250, y: 400},
-        {x: 9550, y: 380}, {x: 10200, y: 400},
+           {x: 525, y: 400}, {x: 875, y: 280}, {x: 1225, y: 500},
+        {x: 1575, y: 200}, {x: 1925, y: 600}, {x: 2275, y: 680},
+        {x: 2625, y: 700}, {x: 2975, y: 180}, {x: 3325, y: 700},
+        {x: 3675, y: 280}, {x: 4025, y: 600}, {x: 4375, y: 380},
+        {x: 4725, y: 700}, {x: 5075, y: 580}, {x: 5425, y: 400},
+        {x: 5775, y: 380}, {x: 6125, y: 400}, {x: 6475, y: 380},
+        {x: 6825, y: 660}, {x: 7175, y: 250}, {x: 7525, y: 750},
+        {x: 7875, y: 680}, {x: 8225, y: 400}, {x: 8575, y: 300},
+        {x: 8925, y: 400}, {x: 9275, y: 380}, {x: 9625, y: 400},
+        {x: 9975, y: 180}, {x: 10325, y: 400}
+    
     ]
 },
  
 {
-    // Level 10 — speed 520, gauntlet: pairs every 450px for a long stretch
+    // level 10 
     speed: 520,
     obstacles: [
         createObs(500, 700), createObs(900, 100, 'down'),
@@ -365,18 +373,18 @@ const createObs = (x, y, type = 'up') => {
         createObs(9950, 700), createObs(9950, 100, 'down'),
     ],
     stars: [
-        {x: 725, y: 400}, {x: 1175, y: 380}, {x: 1625, y: 400},
-        {x: 2075, y: 380}, {x: 2525, y: 400}, {x: 2975, y: 380},
-        {x: 3425, y: 400}, {x: 3875, y: 380}, {x: 4325, y: 400},
-        {x: 4775, y: 380}, {x: 5225, y: 400}, {x: 5675, y: 380},
-        {x: 6125, y: 400}, {x: 6575, y: 380}, {x: 7025, y: 400},
-        {x: 7475, y: 380}, {x: 7925, y: 400}, {x: 8375, y: 380},
-        {x: 8825, y: 400}, {x: 9275, y: 380}, {x: 9725, y: 400},
+        {x: 725, y: 400}, {x: 1175, y: 280}, {x: 1625, y: 600},
+        {x: 2075, y: 500}, {x: 2525, y: 700}, {x: 2975, y: 180},
+        {x: 3425, y: 650}, {x: 3875, y: 280}, {x: 4325, y: 450},
+        {x: 4775, y: 680}, {x: 5225, y: 400}, {x: 5675, y: 300},
+        {x: 6125, y: 500}, {x: 6575, y: 180}, {x: 7025, y: 200},
+        {x: 7475, y: 380}, {x: 7925, y: 450}, {x: 8375, y: 180},
+        {x: 8825, y: 550}, {x: 9275, y: 380}, {x: 9725, y: 400},
     ]
 },
  
 {
-    // Level 11 — speed 550, wave pattern: alternating high/low pairs with singles
+    // level 11
     speed: 550,
     obstacles: [
         createObs(600, 700), createObs(800, 100, 'down'),
@@ -409,70 +417,26 @@ const createObs = (x, y, type = 'up') => {
         createObs(10500, 700), createObs(10500, 100, 'down'),
     ],
     stars: [
-        {x: 800, y: 400}, {x: 1150, y: 380}, {x: 1500, y: 400},
-        {x: 1900, y: 380}, {x: 2250, y: 400}, {x: 2600, y: 380},
-        {x: 3000, y: 400}, {x: 3350, y: 380}, {x: 3700, y: 400},
-        {x: 4100, y: 380}, {x: 4450, y: 400}, {x: 4800, y: 380},
-        {x: 5200, y: 400}, {x: 5550, y: 380}, {x: 5900, y: 400},
-        {x: 6300, y: 380}, {x: 6650, y: 400}, {x: 7000, y: 380},
-        {x: 7400, y: 400}, {x: 7750, y: 380}, {x: 8100, y: 400},
-        {x: 8500, y: 380}, {x: 8850, y: 400}, {x: 9200, y: 380},
-        {x: 9600, y: 400}, {x: 9950, y: 380}, {x: 10300, y: 400},
+        {x: 800, y: 400}, {x: 1150, y: 380}, {x: 1500, y: 200},
+        {x: 1900, y: 580}, {x: 2250, y: 600}, {x: 2600, y: 280},
+        {x: 3000, y: 700}, {x: 3350, y: 180}, {x: 3700, y: 550},
+        {x: 4100, y: 480}, {x: 4450, y: 200}, {x: 4800, y: 380},
+        {x: 5200, y: 600}, {x: 5550, y: 580}, {x: 5900, y: 400},
+        {x: 6300, y: 280}, {x: 6650, y: 500}, {x: 7000, y: 780},
+        {x: 7400, y: 400}, {x: 7750, y: 380}, {x: 8100, y: 300},
+        {x: 8500, y: 280}, {x: 8850, y: 200}, {x: 9200, y: 300},
+        {x: 9600, y: 750}, {x: 9950, y: 180}, {x: 10300, y: 450},
     ]
 },
  
+
 {
-    // Level 12 — speed 580, triple-column bursts with breathing room
-    speed: 580,
+    // level 12
+    speed: 620,
     obstacles: [
-        createObs(400, 700), createObs(600, 100, 'down'),
-        createObs(750, 700), createObs(950, 100, 'down'),
-        createObs(1100, 700), createObs(1100, 100, 'down'),
-        createObs(1700, 650),
-        createObs(2100, 150, 'down'),
-        createObs(2500, 650),
-        createObs(3100, 700), createObs(3100, 100, 'down'),
-        createObs(3450, 700), createObs(3450, 100, 'down'),
-        createObs(3800, 700), createObs(3800, 100, 'down'),
-        createObs(4400, 640),
-        createObs(4800, 160, 'down'),
-        createObs(5200, 640),
-        createObs(5800, 700), createObs(5800, 100, 'down'),
-        createObs(6150, 700), createObs(6150, 100, 'down'),
-        createObs(6500, 700), createObs(6500, 100, 'down'),
-        createObs(7100, 650),
-        createObs(7500, 150, 'down'),
-        createObs(7900, 650),
-        createObs(8500, 700), createObs(8500, 100, 'down'),
-        createObs(8850, 700), createObs(8850, 100, 'down'),
-        createObs(9200, 700), createObs(9200, 100, 'down'),
-        createObs(9800, 640),
-        createObs(10200, 160, 'down'),
-        createObs(10600, 640),
-        createObs(11200, 700), createObs(11200, 100, 'down'),
-        createObs(11550, 700), createObs(11550, 100, 'down'),
-        createObs(11900, 700), createObs(11900, 100, 'down'),
-    ],
-    stars: [
-        {x: 575, y: 400}, {x: 925, y: 380}, {x: 1400, y: 400},
-        {x: 1900, y: 380}, {x: 2300, y: 400}, {x: 2800, y: 380},
-        {x: 3275, y: 400}, {x: 3625, y: 380}, {x: 4100, y: 400},
-        {x: 4600, y: 380}, {x: 5000, y: 400}, {x: 5500, y: 380},
-        {x: 5975, y: 400}, {x: 6325, y: 380}, {x: 6800, y: 400},
-        {x: 7300, y: 380}, {x: 7700, y: 400}, {x: 8200, y: 380},
-        {x: 8675, y: 400}, {x: 9025, y: 380}, {x: 9500, y: 400},
-        {x: 10000, y: 380}, {x: 10400, y: 400}, {x: 10900, y: 380},
-        {x: 11375, y: 400}, {x: 11725, y: 380},
-    ]
-},
- 
-{
-    // Level 13 — speed 610, gauntlet of pairs every 400px — longest level yet
-    speed: 610,
-    obstacles: [
-        createObs(400, 700), createObs(800, 100, 'down'),
-        createObs(800, 700), createObs(1100, 100, 'down'),
-        createObs(1200, 700), createObs(1200, 100, 'down'),
+        createObs(400, 700), createObs(900, 100, 'down'),
+        createObs(800, 700), createObs(1180, 100, 'down'),
+        createObs(1200, 700),
         createObs(1600, 700), createObs(1600, 100, 'down'),
         createObs(2000, 700), createObs(2000, 100, 'down'),
         createObs(2400, 700), createObs(2400, 100, 'down'),
@@ -502,26 +466,26 @@ const createObs = (x, y, type = 'up') => {
         createObs(12000, 700), createObs(12000, 100, 'down'),
     ],
     stars: [
-        {x: 600, y: 400}, {x: 1000, y: 380}, {x: 1400, y: 400},
-        {x: 1800, y: 380}, {x: 2200, y: 400}, {x: 2600, y: 380},
-        {x: 3000, y: 400}, {x: 3400, y: 380}, {x: 3800, y: 400},
-        {x: 4200, y: 380}, {x: 4600, y: 400}, {x: 5000, y: 380},
-        {x: 5400, y: 400}, {x: 5800, y: 380}, {x: 6200, y: 400},
-        {x: 6600, y: 380}, {x: 7000, y: 400}, {x: 7400, y: 380},
-        {x: 7800, y: 400}, {x: 8200, y: 380}, {x: 8600, y: 400},
-        {x: 9000, y: 380}, {x: 9400, y: 400}, {x: 9800, y: 380},
-        {x: 10200, y: 400}, {x: 10600, y: 380}, {x: 11000, y: 400},
-        {x: 11400, y: 380}, {x: 11800, y: 400},
+        {x: 600, y: 400}, {x: 1000, y: 380}, {x: 1400, y: 700},
+        {x: 1800, y: 280}, {x: 2200, y: 500}, {x: 2600, y: 660},
+        {x: 3000, y: 700}, {x: 3400, y: 260}, {x: 3800, y: 550},
+        {x: 4200, y: 180}, {x: 4600, y: 400}, {x: 5000, y: 580},
+        {x: 5400, y: 400}, {x: 5800, y: 380}, {x: 6200, y: 600},
+        {x: 6600, y: 260}, {x: 7000, y: 400}, {x: 7400, y: 780},
+        {x: 7800, y: 350}, {x: 8200, y: 380}, {x: 8600, y: 450},
+        {x: 9000, y: 220}, {x: 9400, y: 480}, {x: 9800, y: 650},
+        {x: 10200, y: 300}, {x: 10600, y: 780}, {x: 11000, y: 480},
+        {x: 11400, y: 570}, {x: 11800, y: 300},
     ]
 },
  
 {
-   
+    // level 13
     speed: 650,
     obstacles: [
-        createObs(350, 700), createObs(550, 100, 'down'),
+        createObs(350, 700), createObs(850, 100, 'down'),
         createObs(700, 700), createObs(1000, 100, 'down'),
-        createObs(1050, 700), createObs(1050, 100, 'down'),
+        createObs(1050, 700), 
         createObs(1400, 700), createObs(1400, 100, 'down'),
         createObs(1750, 700), createObs(1750, 100, 'down'),
         createObs(2100, 700), createObs(2100, 100, 'down'),
@@ -556,26 +520,26 @@ const createObs = (x, y, type = 'up') => {
         createObs(12250, 700), createObs(12250, 100, 'down'),
     ],
     stars: [
-        {x: 525, y: 400}, {x: 875, y: 380}, {x: 1225, y: 400},
-        {x: 1575, y: 380}, {x: 1925, y: 400}, {x: 2275, y: 380},
-        {x: 2625, y: 400}, {x: 2975, y: 380}, {x: 3325, y: 400},
-        {x: 3675, y: 380}, {x: 4025, y: 400}, {x: 4375, y: 380},
-        {x: 4725, y: 400}, {x: 5075, y: 380}, {x: 5425, y: 400},
+        {x: 525, y: 400}, {x: 875, y: 280}, {x: 1225, y: 500},
+        {x: 1575, y: 200}, {x: 1925, y: 600}, {x: 2275, y: 680},
+        {x: 2625, y: 700}, {x: 2975, y: 180}, {x: 3325, y: 700},
+        {x: 3675, y: 280}, {x: 4025, y: 600}, {x: 4375, y: 380},
+        {x: 4725, y: 700}, {x: 5075, y: 580}, {x: 5425, y: 400},
         {x: 5775, y: 380}, {x: 6125, y: 400}, {x: 6475, y: 380},
-        {x: 6825, y: 400}, {x: 7175, y: 380}, {x: 7525, y: 400},
-        {x: 7875, y: 380}, {x: 8225, y: 400}, {x: 8575, y: 380},
+        {x: 6825, y: 660}, {x: 7175, y: 250}, {x: 7525, y: 750},
+        {x: 7875, y: 680}, {x: 8225, y: 400}, {x: 8575, y: 300},
         {x: 8925, y: 400}, {x: 9275, y: 380}, {x: 9625, y: 400},
-        {x: 9975, y: 380}, {x: 10325, y: 400}, {x: 10675, y: 380},
-        {x: 11025, y: 400}, {x: 11375, y: 380}, {x: 11725, y: 400},
-        {x: 12075, y: 380},
+        {x: 9975, y: 180}, {x: 10325, y: 400}, {x: 10675, y: 250},
+        {x: 11025, y: 500}, {x: 11375, y: 380}, {x: 11725, y: 190},
+        {x: 12075, y: 780},
     ]
 },
  
 {
-   
-    speed: 700,
+   // level 14
+    speed: 680,
     obstacles: [
-        createObs(300, 700), createObs(700, 100, 'down'),
+        createObs(300, 700), createObs(850, 100, 'down'),
         createObs(600, 700), createObs(1000, 100, 'down'),
         createObs(900, 700), createObs(1300, 100, 'down'),
         createObs(1300, 650),
@@ -622,25 +586,63 @@ const createObs = (x, y, type = 'up') => {
         createObs(14200, 700), createObs(14200, 100, 'down'),
     ],
     stars: [
-        {x: 450, y: 400}, {x: 750, y: 380}, {x: 1100, y: 400},
-        {x: 1450, y: 380}, {x: 1750, y: 400}, {x: 2050, y: 380},
-        {x: 2350, y: 400}, {x: 2650, y: 380}, {x: 2950, y: 400},
-        {x: 3350, y: 380}, {x: 3650, y: 400}, {x: 3950, y: 380},
-        {x: 4250, y: 400}, {x: 4550, y: 380}, {x: 4850, y: 400},
-        {x: 5250, y: 380}, {x: 5550, y: 400}, {x: 5850, y: 380},
-        {x: 6150, y: 400}, {x: 6450, y: 380}, {x: 6750, y: 400},
-        {x: 7150, y: 380}, {x: 7450, y: 400}, {x: 7750, y: 380},
-        {x: 8050, y: 400}, {x: 8350, y: 380}, {x: 8650, y: 400},
-        {x: 9050, y: 380}, {x: 9350, y: 400}, {x: 9650, y: 380},
-        {x: 9950, y: 400}, {x: 10250, y: 380}, {x: 10550, y: 400},
-        {x: 10950, y: 380}, {x: 11250, y: 400}, {x: 11550, y: 380},
-        {x: 11850, y: 400}, {x: 12150, y: 380}, {x: 12450, y: 400},
-        {x: 12850, y: 380}, {x: 13150, y: 400}, {x: 13450, y: 380},
-        {x: 13750, y: 400}, {x: 14050, y: 380},
+        {x: 525, y: 400}, {x: 875, y: 280}, {x: 1225, y: 500},
+        {x: 1575, y: 200}, {x: 1925, y: 600}, {x: 2275, y: 680},
+        {x: 2625, y: 700}, {x: 2975, y: 180}, {x: 3325, y: 700},
+        {x: 3675, y: 280}, {x: 4025, y: 600}, {x: 4375, y: 380},
+        {x: 4725, y: 700}, {x: 5075, y: 580}, {x: 5425, y: 400},
+        {x: 5775, y: 380}, {x: 6125, y: 400}, {x: 6475, y: 380},
+        {x: 6825, y: 660}, {x: 7175, y: 250}, {x: 7525, y: 750},
+        {x: 7875, y: 680}, {x: 8225, y: 400}, {x: 8575, y: 300},
+        {x: 8925, y: 400}, {x: 9275, y: 380}, {x: 9625, y: 400},
+        {x: 9975, y: 180}, {x: 10325, y: 400}, {x: 10675, y: 250},
+        {x: 11025, y: 500}, {x: 11375, y: 380}, {x: 11725, y: 190},
+        {x: 12075, y: 780},{x: 13150, y: 500}, {x: 13450, y: 480},
+        {x: 13750, y: 380}, {x: 14050, y: 400},
     ]
 },
 
-];
+{
+    // level 15
+    speed: 670,
+    obstacles: [
+
+        createObs(400, 700), createObs(700, 100, "down"),
+        createObs(600, 700), createObs(1000, 100, "down"), 
+        createObs(1050, 700), createObs(1300, 100, "down"), 
+        createObs(1400, 700), createObs(1550, 100, "down"), 
+        createObs(1850, 700), createObs(2050, 100, "down"), 
+        createObs(2200, 100, "down"),
+        createObs(2550, 700), createObs(2700, 100, "down"),
+        createObs(3000, 700), createObs(3150, 150, "down"),
+        createObs(3450, 750), createObs(3450, 100, "down"), 
+        createObs(3750, 600), createObs(3900, 200, "down"),
+        createObs(4100, 600), createObs(4250, 200, "down"),
+        createObs(4600, 100, "down"),
+        createObs(4900, 100, "down"),
+        createObs(5200, 750),
+        createObs(5700, 150, "down"),
+
+    ],
+    stars: [
+        {x: 450, y: 400}, 
+        {x: 750, y: 700}, 
+        {x: 1050, y: 200},
+        {x: 1450, y: 200},
+        {x: 2000, y: 600},
+        {x: 2200, y: 200},
+        {x: 2400, y: 600}, 
+        {x: 3400, y: 400}, 
+        {x: 3775, y: 500},
+        {x: 4075, y: 650},
+        {x: 5200, y: 470},
+        {x: 5500, y: 300},
+        {x: 5700, y: 700}
+    ]
+ }
+]
+ 
+
  
 
 
@@ -843,7 +845,7 @@ class GameScene extends Phaser.Scene {
     });
 
         // Player
-        this.plane = this.physics.add.sprite(100, 300, 'plane');
+        this.plane = this.physics.add.sprite(100, 400, 'plane');
         this.plane.setBounce(0.5);
         this.plane.body.allowGravity = false;
         this.plane.setCollideWorldBounds(true);
@@ -913,15 +915,15 @@ class GameScene extends Phaser.Scene {
                 if (!this.hasPlayedCrash) {
                     this.crashMusic.play();
                     const emiter = this.add.particles(this.plane.x, this.plane.y, "smoke", {
-                            speed: {min: 50, max: 150},
-                            scale: {start: 0.7, end: 0},
-                            alpha: {start: 1, end: 0}, 
-                            angle: { min: 0, max: 360},
-                            lifespan: 800,
-                            blendMode: 'ADD',
-                            emitting: false,
+                           speed: {min: 50, max: 150},
+                           scale: {min: 0.7, max: 0},
+                           alpha: {start: 1, end: 0},
+                           angle: {min: 0, max: 360},
+                           lifespan: 800,
+                           blendMode: 'ADD',
+                           emitting: false
                     });
-                    emiter.setDepth(59);
+                    emiter.setDepth(50);
                     emiter.explode(15)
                     this.hasPlayedCrash = true;
                    
