@@ -677,7 +677,13 @@ class MenuScene extends Phaser.Scene {
         const startBtn = this.add.text(width / 2, height * 0.7, 'START MISSION', {
             fontSize: '40px', backgroundColor: '#000', padding: { x: 20, y: 10 }, fill: '#0f0'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+        
+        // Level Button
+        const LevelBtn = this.add.text(width / 2, height * 0.8, 'LEVEL SELECT', {
+            fontSize: '40px', backgroundColor: '#000', padding: { x: 20, y: 10 }, fill: '#0f0'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
+         LevelBtn.on('pointerdown', () => this.scene.start('LevelScene'));
         startBtn.on('pointerdown', () => this.scene.start('GameScene'));
     }
 };
@@ -734,10 +740,151 @@ class LoadingScene extends Phaser.Scene {
     }
 
     create() {
-  
+        
         this.scene.start('MenuScene');
+
+        
     }
 }
+
+// LEVEL SCENE
+class LevelScene extends Phaser.Scene {
+    constructor() {
+        super('LevelScene');
+    }
+
+   
+    create() {
+        const { width, height } = this.scale;
+        const isMobile = height > width;
+        const worldHeight = 5000;
+        const worldWidth = width;
+        this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
+         // Background
+         this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height);
+
+
+        // Back Button
+        const MenuBtn = this.add.text(width / 5, height * 0.1, "<- BACK", {
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+        MenuBtn.on('pointerdown', () => this.scene.start('MenuScene'));
+        // Next Button
+        const NextBtn = this.add.text(width / 1.3, height * 0.1, "NEXT ->", {
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+        NextBtn.on('pointerdown', () => this.scene.start('LevelScene2'));
+
+        const cols = 3;
+        const row = 3;
+        const startX = width * 0.2;
+        const startY = height * 0.35;
+        const spacingX = width * 0.3;
+        const spacingY = height * 0.25;
+
+        for(let i = 0; i <= 9; i++) {
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            
+            const x = startX + (col * spacingX);
+            const y = startY + (row * spacingY);
+
+            let levelNum = i + 1;
+
+            const levelBtn = this.add.text(x, y, `Level ${levelNum}`, {
+                fontSize: '32px', 
+                fill: '#fff', 
+                backgroundColor: '#333', 
+                padding: { x: 20, y: 10 }
+            }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+            // On click: Set the level index in GameScene and start it
+            levelBtn.on('pointerdown', () => {
+                const gameScene = this.scene.get('GameScene');
+                gameScene.currentLevelIndex = i; // Map button 1 to index 0, etc.
+                this.scene.start('GameScene');
+            });
+
+            // Hover effects for "Polished" feel
+            levelBtn.on('pointerover', () => levelBtn.setStyle({ fill: '#0f0' }));
+            levelBtn.on('pointerout', () => levelBtn.setStyle({ fill: '#fff' }));
+        }
+        }
+       
+    }
+    
+  
+
+// LEVEL SCENE 2
+class LevelScene2 extends Phaser.Scene {
+    constructor() {
+        super('LevelScene2');
+    }
+
+   
+    create() {
+        const { width, height } = this.scale;
+        const isMobile = height > width;
+        const worldHeight = 5000;
+        const worldWidth = width;
+        this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
+         // Background
+         this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height);
+
+
+        // Back Button
+        const MenuBtn = this.add.text(width / 5, height * 0.1, "<- BACK", {
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+        MenuBtn.on('pointerdown', () => this.scene.start('LevelScene'));
+      
+            
+        const  startIndex = 9;
+        const endIndex = 14;
+
+        const cols = 3;
+        const startX = width * 0.2;
+        const startY = height * 0.35;
+        const spacingX = width * 0.3;
+        const spacingY = height * 0.25;
+
+        for(let i = startIndex; i <= endIndex; i++) {
+            const relativeIndex = i - startIndex;
+
+            const col = relativeIndex % cols;
+            const rowPos = Math.floor(relativeIndex / cols);
+
+            const x = startX + (col * spacingX);
+            const y = startY + (rowPos * spacingY);
+
+            const levelNum = i + 1;
+
+            const levelBtn = this.add.text(x, y, `Level ${levelNum}`, {
+                fontSize: '32px', 
+                fill: '#fff', 
+                backgroundColor: '#333', 
+                padding: { x: 20, y: 10 }
+            }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+          
+            levelBtn.on('pointerdown', () => {
+                const gameScene = this.scene.get('GameScene');
+                gameScene.currentLevelIndex = i; // Map button 1 to index 0, etc.
+                this.scene.start('GameScene');
+            });
+
+            
+            levelBtn.on('pointerover', () => levelBtn.setStyle({ fill: '#0f0' }));
+            levelBtn.on('pointerout', () => levelBtn.setStyle({ fill: '#fff' }));
+        }
+        }
+       
+    }
+    
+ 
 
 // GAME SCENE
 class GameScene extends Phaser.Scene {
@@ -961,7 +1108,7 @@ const config = {
         default: "arcade", 
         arcade: { gravity: { y: 600 }, debug: false } 
     },
-    scene: [LoadingScene, MenuScene, GameScene]
+    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, GameScene]
 };
 
 const Game = new Phaser.Game(config);
