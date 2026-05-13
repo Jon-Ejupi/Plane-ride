@@ -835,11 +835,11 @@ class LevelScene2 extends Phaser.Scene {
 
 
         // Back Button
-        const MenuBtn = this.add.text(width / 5, height * 0.1, "<- BACK", {
+        const LevelBtn = this.add.text(width / 5, height * 0.1, "<- BACK", {
              fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
-        MenuBtn.on('pointerdown', () => this.scene.start('LevelScene'));
+        LevelBtn.on('pointerdown', () => this.scene.start('LevelScene'));
       
             
         const  startIndex = 9;
@@ -921,8 +921,7 @@ class GameScene extends Phaser.Scene {
 
         this.smoke = this.physics.add.staticGroup();
         this.levelLength = Math.max(...currentLevel.obstacles.map(o => o.x)) + 500;
-
-   
+        
         this.totalstars = parseInt(localStorage.getItem('totalstars')) || 0;
 
         this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
@@ -1003,7 +1002,13 @@ class GameScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.plane, true, 0.1, 0.1);
 
         // UI
-        this.scoreText = this.add.text(16, 16, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
+         const MenuBtn = this.add.text(width / 6, height * 0.05, "<- BACK", {
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
+
+        MenuBtn.on('pointerdown', () => this.scene.start('MenuScene'));
+
+        this.scoreText = this.add.text(700, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
         this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
         
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
