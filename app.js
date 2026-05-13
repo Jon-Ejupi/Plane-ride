@@ -884,7 +884,48 @@ class LevelScene2 extends Phaser.Scene {
        
     }
     
- 
+        class PauseScene extends Phaser.Scene {
+            constructor() {
+                super('PauseScene');
+            }
+
+            create() {
+            const { width, height } = this.scale;
+
+            
+            this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height);
+            this.add.rectangle(0, 0, width, height, 0x000000, 0.7).setOrigin(0);
+
+        
+            this.add.text(width / 2, height / 2 - 40, 'PAUSED', {
+                fontSize: '64px',
+                fill: '#ffffff',
+                fontStyle: 'bold'
+            }).setOrigin(0.5);
+
+          
+            const ResumeBtn = this.add.text(width / 2, height * 0.7, 'RESUME', {
+                fontSize: '40px', 
+                backgroundColor: '#000', 
+                padding: { x: 20, y: 10 }, 
+                fill: '#0f0'
+            }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+
+          
+            ResumeBtn.on('pointerdown', () => {
+                this.resumeGame();
+                this.scene.start('GameScene');
+            });
+
+            
+           
+        }
+
+        resumeGame() {
+            this.scene.stop();
+            this.scene.resume('GameScene'); 
+}
+}
 
 // GAME SCENE
 class GameScene extends Phaser.Scene {
@@ -1008,9 +1049,15 @@ class GameScene extends Phaser.Scene {
 
         MenuBtn.on('pointerdown', () => this.scene.start('MenuScene'));
 
+    const PauseBtn = this.add.text(width / 2, height * 0.05, "PAUSE", {
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+        }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
+
+        PauseBtn.on('pointerdown', () => this.scene.start('PauseScene'));
+
         this.scoreText = this.add.text(700, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
         this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
-        
+    
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
         this.winText = this.add.text(width / 2, height / 2, 'LEVEL COMPLETE!\nPress N or Tap for Next', { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
 
@@ -1029,9 +1076,12 @@ class GameScene extends Phaser.Scene {
             this.starMusic.play();
         });
 
+     
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyR = this.input.keyboard.addKey('R');
         this.keyN = this.input.keyboard.addKey('N');
+        this.keyP = this.input.keyboard.addKey('P');
     }
 
     update() {
@@ -1096,9 +1146,10 @@ class GameScene extends Phaser.Scene {
             this.currentLevelIndex = (this.currentLevelIndex + 1) % levels.length;
             this.scene.restart({currentLevelIndex: this.currentLevelIndex, totalstars: this.totalstars});
         }
-    
-    }
+           
+   
 
+    }
 }
 // CONFIGURATION
 const config = {
@@ -1113,7 +1164,7 @@ const config = {
         default: "arcade", 
         arcade: { gravity: { y: 600 }, debug: false } 
     },
-    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, GameScene]
+    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, PauseScene,  GameScene]
 };
 
 const Game = new Phaser.Game(config);
