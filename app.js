@@ -1055,7 +1055,7 @@ class GameScene extends Phaser.Scene {
 
         PauseBtn.on('pointerdown', () => this.scene.start('PauseScene'));
 
-        this.scoreText = this.add.text(700, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
+        this.scoreText = this.add.text(900, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
         this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
     
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
@@ -1081,7 +1081,7 @@ class GameScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyR = this.input.keyboard.addKey('R');
         this.keyN = this.input.keyboard.addKey('N');
-        this.keyP = this.input.keyboard.addKey('P');
+
     }
 
     update() {
