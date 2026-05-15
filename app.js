@@ -913,19 +913,15 @@ class LevelScene2 extends Phaser.Scene {
 
           
             ResumeBtn.on('pointerdown', () => {
-                this.resumeGame();
-                this.scene.start('GameScene');
+              this.scene.resume('GameScene');
+              this.scene.stop();
             });
 
             
            
         }
 
-        resumeGame() {
-            this.scene.stop();
-            this.scene.resume('GameScene'); 
-}
-}
+    }
 
 // GAME SCENE
 class GameScene extends Phaser.Scene {
@@ -965,14 +961,14 @@ class GameScene extends Phaser.Scene {
         
         this.totalstars = parseInt(localStorage.getItem('totalstars')) || 0;
 
-        this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
+        this.add.image(0, 0, "background", this.levelLength).setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
         
        
         if (!this.sound.get('bgMusic')) {
             this.bgMusic = this.sound.add('bgMusic', { volume: 0.4, loop: true });
             this.bgMusic.play();
         } else {
-            this.bgMusic = this.sound.get('bgMusic');
+            this.bgMusic = this.sound.get('bgMusic', this.levelLength);
         }
 
         const roads = this.physics.add.staticGroup();
@@ -1036,6 +1032,7 @@ class GameScene extends Phaser.Scene {
         this.plane.setBounce(0.5);
         this.plane.body.allowGravity = false;
         this.plane.setCollideWorldBounds(true);
+        
 
         // Camera
         this.physics.world.setBounds(0, 0, this.levelLength, height);
@@ -1044,22 +1041,25 @@ class GameScene extends Phaser.Scene {
 
         // UI
          const MenuBtn = this.add.text(width / 6, height * 0.05, "<- BACK", {
-             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+             fontSize: '40px', padding: { x: 20, y: 10 }, fontStyle: 'bold', fill: '#000'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
 
         MenuBtn.on('pointerdown', () => this.scene.start('MenuScene'));
 
     const PauseBtn = this.add.text(width / 2, height * 0.05, "PAUSE", {
-             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
+             fontSize: '40px', padding: { x: 20, y: 10 }, fontStyle: 'bold', fill: '#000'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
 
-        PauseBtn.on('pointerdown', () => this.scene.start('PauseScene'));
+        PauseBtn.on('pointerdown', () => {
+             this.scene.pause('GameScene');
+            this.scene.launch('PauseScene');
+        });
 
-        this.scoreText = this.add.text(900, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
+        this.scoreText = this.add.text(900, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fontStyle: 'bold', fill: '#000' }).setScrollFactor(0).setDepth(100);
         this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
     
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
-        this.winText = this.add.text(width / 2, height / 2, 'LEVEL COMPLETE!\nPress N or Tap for Next', { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
+        this.winText = this.add.text(width / 2, height / 2, `LEVEL COMPLETE! Go to next Level  ${this.currentLevelIndex + 2}\nPress N or Tap for Next`, { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
 
         // Audio
         this.starMusic = this.sound.add('starMusic', { volume: 0.4 });
@@ -1126,7 +1126,8 @@ class GameScene extends Phaser.Scene {
                            emitting: false
                     });
                     emiter.setDepth(50);
-                    emiter.explode(15)
+                    emiter.explode(30);
+                   
                     this.hasPlayedCrash = true;
                    
                 }
@@ -1164,7 +1165,7 @@ const config = {
         default: "arcade", 
         arcade: { gravity: { y: 600 }, debug: false } 
     },
-    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, PauseScene,  GameScene]
+    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, GameScene, PauseScene]
 };
 
 const Game = new Phaser.Game(config);
