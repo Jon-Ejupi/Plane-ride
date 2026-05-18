@@ -730,7 +730,11 @@ class LoadingScene extends Phaser.Scene {
         this.load.image("star", "./PNG/starGold.png");
         this.load.image("smoke", "./PNG/puffLarge.png");
         this.load.spritesheet("plane", './PNG/Planes/planeGreen1.png', { frameWidth: 64, frameHeight: 96 });
-        
+  this.load.spritesheet("bat", "./PNG/enemies/Enemy sprites/bat.png", {
+            frameWidth: 32,
+            frameHeight: 32,
+
+        });        
         
         this.load.audio('bgMusic', './backgroundmusicforvideos-game-minecraft-gaming-background-music-402451.mp3');
         this.load.audio('starMusic', './starcollect.wav');
@@ -913,15 +917,19 @@ class LevelScene2 extends Phaser.Scene {
 
           
             ResumeBtn.on('pointerdown', () => {
-              this.scene.resume('GameScene');
-              this.scene.stop();
+                this.resumeGame();
+               
             });
 
             
            
         }
 
-    }
+        resumeGame() {
+            this.scene.stop();
+            this.scene.resume('GameScene'); 
+}
+}
 
 // GAME SCENE
 class GameScene extends Phaser.Scene {
@@ -961,14 +969,14 @@ class GameScene extends Phaser.Scene {
         
         this.totalstars = parseInt(localStorage.getItem('totalstars')) || 0;
 
-        this.add.image(0, 0, "background", this.levelLength).setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
+        this.add.image(0, 0, "background").setOrigin(0, 0).setDisplaySize(width, height).setScrollFactor(0);
         
        
         if (!this.sound.get('bgMusic')) {
             this.bgMusic = this.sound.add('bgMusic', { volume: 0.4, loop: true });
             this.bgMusic.play();
         } else {
-            this.bgMusic = this.sound.get('bgMusic', this.levelLength);
+            this.bgMusic = this.sound.get('bgMusic');
         }
 
         const roads = this.physics.add.staticGroup();
@@ -992,10 +1000,10 @@ class GameScene extends Phaser.Scene {
             
             if (isMobile) {
                 
-                obstacle.setScale(2, 2); 
+                obstacle.setScale(1.5, 1.5); 
             } else {
 
-                obstacle.setScale(1.2, 1.2);
+                obstacle.setScale(1.5, 1.5);
             }
         } else {
 
@@ -1003,9 +1011,9 @@ class GameScene extends Phaser.Scene {
             obstacle.y = 0;             
             
             if (isMobile) {
-                obstacle.setScale(2, 2);
+                obstacle.setScale(1.5, 1.5);
             } else {
-                obstacle.setScale(1.2, 1.2);
+                obstacle.setScale(1.5, 1.5);
             }
         }
 
@@ -1032,7 +1040,6 @@ class GameScene extends Phaser.Scene {
         this.plane.setBounce(0.5);
         this.plane.body.allowGravity = false;
         this.plane.setCollideWorldBounds(true);
-        
 
         // Camera
         this.physics.world.setBounds(0, 0, this.levelLength, height);
@@ -1041,25 +1048,22 @@ class GameScene extends Phaser.Scene {
 
         // UI
          const MenuBtn = this.add.text(width / 6, height * 0.05, "<- BACK", {
-             fontSize: '40px', padding: { x: 20, y: 10 }, fontStyle: 'bold', fill: '#000'
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
 
         MenuBtn.on('pointerdown', () => this.scene.start('MenuScene'));
 
     const PauseBtn = this.add.text(width / 2, height * 0.05, "PAUSE", {
-             fontSize: '40px', padding: { x: 20, y: 10 }, fontStyle: 'bold', fill: '#000'
+             fontSize: '40px', padding: { x: 20, y: 10 }, fill: '#000'
         }).setOrigin(0.5).setInteractive({ useHandCursor: true }).setScrollFactor(0);
 
-        PauseBtn.on('pointerdown', () => {
-             this.scene.pause('GameScene');
-            this.scene.launch('PauseScene');
-        });
+        PauseBtn.on('pointerdown', () => this.scene.launch('PauseScene'));
 
-        this.scoreText = this.add.text(900, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fontStyle: 'bold', fill: '#000' }).setScrollFactor(0).setDepth(100);
+        this.scoreText = this.add.text(900, 50, `Stars: ${this.totalstars}`, { fontSize: '32px', fill: '#000' }).setScrollFactor(0).setDepth(100);
         this.messageText = this.add.text(width / 2, height / 2, `LEVEL ${this.currentLevelIndex + 1}\nUP or Tap to Fly`, { fontSize: '40px', align: 'center', backgroundColor: '#02fff0'}).setOrigin(0.5).setScrollFactor(0);
     
         this.retryText = this.add.text(width / 2, height / 2, 'GAME OVER\nPress R or Tap to Retry', { fontSize: '40px', backgroundColor: '#000' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
-        this.winText = this.add.text(width / 2, height / 2, `LEVEL COMPLETE! Go to next Level  ${this.currentLevelIndex + 2}\nPress N or Tap for Next`, { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
+        this.winText = this.add.text(width / 2, height / 2, 'LEVEL COMPLETE!\nPress N or Tap for Next', { fontSize: '40px', backgroundColor: '#0f0' }).setOrigin(0.5).setScrollFactor(0).setVisible(false);
 
         // Audio
         this.starMusic = this.sound.add('starMusic', { volume: 0.4 });
@@ -1077,14 +1081,38 @@ class GameScene extends Phaser.Scene {
         });
 
      
+ // Enemy 
+       this.bats = this.physics.add.group();
 
+       this.anims.create({
+        key: 'bat_fly',
+        frames: this.anims.generateFrameNumbers('bat', { start: 0, end: 3 }), // adjust frames to your sheet
+        frameRate: 10,
+        repeat: -1 // Loop infinitely
+       });
+
+       this.time.addEvent({
+        delay: 2000, // Spawn every 2000ms (2 seconds)
+       callback: this.batSpawn,
+        callbackScope: this,
+        loop: true
+       });
+
+         this.physics.add.collider(this.plane, this.bats, () => this.hasBumped = true);
+            this.physics.add.collider(
+            this.plane, 
+            this.bats, 
+            this.batKill, 
+            null, 
+            this 
+        );
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyR = this.input.keyboard.addKey('R');
         this.keyN = this.input.keyboard.addKey('N');
 
     }
 
-    update() {
+     update() {
         if (!this.plane) return;
         const interacting = this.cursors.up.isDown || this.input.activePointer.isDown;
 
@@ -1126,8 +1154,7 @@ class GameScene extends Phaser.Scene {
                            emitting: false
                     });
                     emiter.setDepth(50);
-                    emiter.explode(30);
-                   
+                    emiter.explode(15)
                     this.hasPlayedCrash = true;
                    
                 }
@@ -1151,7 +1178,40 @@ class GameScene extends Phaser.Scene {
    
 
     }
-}
+
+
+    batSpawn() { 
+         const cameraLeftEdge = this.cameras.main.scrollX + this.cameras.main.width;
+         
+         if (cameraLeftEdge >= 5000) {
+            return;
+         }
+
+        const heights = [ 400, 500, 600];
+        
+        const getRandom = Phaser.Utils.Array.GetRandom(heights);
+
+        const bat = this.bats.create(cameraLeftEdge + 50, getRandom, 'bat');
+
+        bat.setVelocityX(-300);
+
+        bat.play('bat_fly');
+
+        bat.body.setAllowGravity(false);
+        bat.setCollideWorldBounds(true);
+       
+   }
+
+   batKill(plane, bat) {
+        this.hasBumped = true;
+        plane.setTint(0xff0000);
+        bat.destroy();
+        
+   }
+
+}  
+
+
 // CONFIGURATION
 const config = {
     type: Phaser.AUTO,
