@@ -1032,7 +1032,7 @@ class GameScene extends Phaser.Scene {
             else if (s.y <= 300) {
                 finalStarY = 550; 
             }
-            stars.create(s.x, finalStarY, "star")
+         stars.create(s.x, finalStarY, "star")
     });
 
         // Player
