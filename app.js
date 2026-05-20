@@ -931,6 +931,7 @@ class LevelScene2 extends Phaser.Scene {
 }
 }
 
+
 // GAME SCENE
 class GameScene extends Phaser.Scene {
     constructor() {
@@ -1106,6 +1107,7 @@ class GameScene extends Phaser.Scene {
             null, 
             this 
         );
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyR = this.input.keyboard.addKey('R');
         this.keyN = this.input.keyboard.addKey('N');
@@ -1225,7 +1227,7 @@ const config = {
         default: "arcade", 
         arcade: { gravity: { y: 600 }, debug: false } 
     },
-    scene: [LoadingScene, MenuScene, LevelScene, LevelScene2, GameScene, PauseScene]
+    scene: [LoadingScene, MenuScene,  LevelScene, LevelScene2,   GameScene, PauseScene]
 };
 
 const Game = new Phaser.Game(config);
